@@ -6,22 +6,36 @@ public class PlayerController : MonoBehaviour {
 	public float maxSpeed = 1.6f;
 	public bool facingRight = true;
 	Rigidbody2D rb;
+	Animator anim;
 
 	bool grounded = false;
 	bool grounddist = false;
 	public Transform groundCheck;
 	public Transform distCheck;
-	float groundRadius = 0.10f;
+	float groundRadius = 0.02f;
 	public LayerMask whatIsGround;
 	public float jumpForce = 200;
 
 	bool doubleJump = true;						//doubleJump Variable
 	public bool doubleJumpEnabled = false;		//doubleJump ON/OFF
 
+	public bool wallJumpEnabled = false;		//wallJump ON/OFF
+	public bool wallSlideEnabled = false;
+	public LayerMask whatIsWall;
+	public Transform wallCheck;
+	float wallRadius = 0.1f;
+	public bool onWall = false;
+
+	public float wallJumpForce = 200f;
+	public float wallJumpPushForce = 500f;
+
+	public float wallJumpControlDelay = 0.15f;
+	public float wallJumpDelayCalc = 0;
 
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+		anim = GetComponent<Animator>();
 	}
 
 	void FixedUpdate () {
@@ -34,35 +48,97 @@ public class PlayerController : MonoBehaviour {
 		else if (move < 0 && facingRight)
 			Flip ();
 
-		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+		anim.SetFloat ("Speed", Mathf.Abs (move));						//Walk transition
 
-		if (grounded && doubleJumpEnabled)								//doubleJump reset
+		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);	//Ground detection
+		anim.SetBool ("Ground", grounded);														//Animator Variable
+
+		if (grounded && doubleJumpEnabled)												//doubleJump reset
 			doubleJump = false;
-
 	}
-
-
 
 	void Update () {
 
-		if((grounded || !doubleJump) && Input.GetButtonDown ("Jump")) {	//doubleJump or Parameter
+		if ((grounded || (!doubleJump)) && Input.GetButtonDown ("Jump")) {	//doubleJump or Parameter
 
 			//AudioSource.PlayClipAtPoint(jump,this.GetComponent<Transform>().position, jumpVolume);
 
-			//anim.SetBool ("Ground", false);
+			anim.SetBool ("Ground", false);
 			rb.velocity = new Vector2 (rb.velocity.x, 0);
 			rb.AddForce(new Vector2 (0, jumpForce));
 
-
-			grounddist = Physics2D.Linecast(groundCheck.position, distCheck.position, whatIsGround); //Smooth landing animation
-			//anim.SetBool ("Dist", grounddist);
-
-
 			if (!doubleJump && !grounded)	//doubleJump
 				doubleJump = true;			//doubleJump
-
 		}
 
+		if (rb.velocity.y > 0) {
+			anim.SetBool ("Fall", false);
+		}
+		else if (rb.velocity.y < 0) {
+			anim.SetBool ("Fall", true);
+		}
+		else {
+			anim.SetBool ("Fall", false);
+		}
+
+
+		grounddist = Physics2D.Linecast(groundCheck.position, distCheck.position, whatIsGround); //Smooth landing animation
+		anim.SetBool ("Dist", grounddist);
+
+
+
+		onWall = Physics2D.OverlapCircle(wallCheck.position, wallRadius, whatIsWall);	//Wall detection
+
+		if (onWall && !grounded && Input.GetButtonDown ("Jump") && wallJumpEnabled) {					// WallJump
+			wallJumpDelayCalc -= Time.deltaTime;
+			rb.velocity = new Vector2 (0, 0);
+			rb.gravityScale = 1f;
+			//maxSpeed = -maxSpeed;
+			rb.AddForce(new Vector2((wallJumpPushForce * (facingRight ? -1:1)), wallJumpForce));
+		}
+	
+		if (grounded) {											//Reset Wall Jump Delay on Ground
+			rb.gravityScale = 1f;
+			wallJumpDelayCalc = wallJumpControlDelay;
+		}
+			
+		if (wallJumpDelayCalc < 0) {
+			rb.gravityScale = 1f;
+			wallJumpDelayCalc = wallJumpControlDelay;
+		}
+
+	
+	}
+
+
+	void OnCollisionEnter2D(Collision2D coll) {
+		if ((coll.gameObject.layer == 9) && wallSlideEnabled) {
+			wallJumpDelayCalc = wallJumpControlDelay;
+		}
+	}
+
+	void OnCollisionStay2D(Collision2D coll) {
+		if ((coll.gameObject.layer == 9) && wallSlideEnabled) {
+
+			if(facingRight && (wallJumpDelayCalc == wallJumpControlDelay) && (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)) {			//Wall Slide Right
+				rb.velocity = new Vector2 (rb.velocity.x, 0);
+				rb.gravityScale = 0.3f;
+			}
+			else if (!facingRight && (wallJumpDelayCalc == wallJumpControlDelay) && (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)) {	//Wall Slide Left
+				rb.velocity = new Vector2 (rb.velocity.x, 0);
+				rb.gravityScale = 0.3f;
+			}
+			else {
+				rb.gravityScale = 1f;
+			}
+		}
+	}
+
+	void OnCollisionExit2D(Collision2D coll) {
+		if ((coll.gameObject.layer == 9) && wallSlideEnabled) {
+			rb.gravityScale = 1f;
+			wallJumpDelayCalc -= Time.deltaTime;
+		}
 
 	}
 
@@ -75,5 +151,5 @@ public class PlayerController : MonoBehaviour {
 		transform.localScale = theScale;
 
 	}
-
+		
 }
