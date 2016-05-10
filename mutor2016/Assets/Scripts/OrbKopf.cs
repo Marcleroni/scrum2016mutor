@@ -51,10 +51,10 @@ public class OrbKopf : MonoBehaviour {
 		direction.Normalize();
 
 		if (pc.facingRight) {
-			rblaser.velocity = (direction) * laserSpeed;
+			rblaser.velocity = (direction) * laserSpeed * Time.deltaTime;
 		}
 		else if (!pc.facingRight) {
-			rblaser.velocity = (-direction) * laserSpeed;
+			rblaser.velocity = (-direction) * laserSpeed * Time.deltaTime;
 		}
 			
 		Physics2D.IgnoreCollision(rblaser.GetComponent<Collider2D>(),  GetComponent<Collider2D>());
