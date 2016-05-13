@@ -1,9 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/OrbKopf.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="86" Column="1" />
-      <File FileName="Assets/Scripts/RobotController.cs" Line="60" Column="116" />
+      <File FileName="Assets/Scripts/OrbKopf.cs" Line="57" Column="65" />
+      <File FileName="Assets/Scripts/BombScript.cs" Line="43" Column="7" />
+      <File FileName="Assets/Scripts/OrbKopfProjektil.cs" Line="22" Column="51" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="24" Column="1" />
+      <File FileName="Assets/Scripts/LayBomb.cs" Line="58" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
