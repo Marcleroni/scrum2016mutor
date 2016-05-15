@@ -7,7 +7,7 @@ public class OrbKopf : MonoBehaviour {
 	public GameObject laserPrefab;
 	public Transform laserStart;
 	public LayerMask ToHit;
-	public int laserSpeed = 10;
+	public float laserSpeed = 1.65f;
 	public int laserMax = 1;	//Lasers at a Time
 	public int laserCount;
 	bool laserShootable;
@@ -47,14 +47,11 @@ public class OrbKopf : MonoBehaviour {
 		GameObject laser = (GameObject)Instantiate(laserPrefab, laserStart.position, laserStart.rotation);
 		Rigidbody2D rblaser = laser.GetComponent<Rigidbody2D>();
 
-		Vector2 direction = rb.transform.right;
-		direction.Normalize();
-
 		if (pc.facingRight) {
-			rblaser.velocity = (direction) * laserSpeed * Time.deltaTime;
+			rblaser.velocity = new Vector2(laserSpeed, 0);
 		}
 		else if (!pc.facingRight) {
-			rblaser.velocity = (-direction) * laserSpeed * Time.deltaTime;
+			rblaser.velocity = new Vector2(-laserSpeed, 0);
 		}
 			
 		Physics2D.IgnoreCollision(rblaser.GetComponent<Collider2D>(),  GetComponent<Collider2D>());
