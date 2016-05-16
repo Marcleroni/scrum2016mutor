@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\LayBomb.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\OrbKopf.cs" />
+     <Compile Include="Assets\Scripts\OrbKopfItem.cs" />
      <Compile Include="Assets\Scripts\OrbKopfProjektil.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\RobotController.cs" />

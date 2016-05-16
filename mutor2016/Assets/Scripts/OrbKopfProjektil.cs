@@ -47,5 +47,9 @@ public class OrbKopfProjektil : MonoBehaviour {
 
 	}
 
+	public void DestroyOnRange () {
+		Destroy(gameObject);
+	} 
+
 
 }

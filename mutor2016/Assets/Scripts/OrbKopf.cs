@@ -3,7 +3,6 @@ using System.Collections;
 
 public class OrbKopf : MonoBehaviour {
 
-	Rigidbody2D rb;
 	public GameObject laserPrefab;
 	public Transform laserStart;
 	public LayerMask ToHit;
@@ -11,7 +10,6 @@ public class OrbKopf : MonoBehaviour {
 	public int laserMax = 1;	//Lasers at a Time
 	public int laserCount;
 	bool laserShootable;
-	Animator anim;
 	public GameObject kopfAnim;
 	Animator animKopf;
 	//public AudioClip bombThrow;
@@ -19,8 +17,6 @@ public class OrbKopf : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		anim = GetComponent<Animator>();
-		rb = GetComponent<Rigidbody2D>();
 		animKopf = kopfAnim.GetComponent<Animator>();
 	}
 
