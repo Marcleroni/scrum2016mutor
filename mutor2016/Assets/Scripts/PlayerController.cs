@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour {
 	bool doubleJump = true;						//doubleJump Variable
 	public bool doubleJumpEnabled = false;		//doubleJump ON/OFF
 
+	public AudioClip jump;
+	public float jumpVolume;
+	AudioSource audio;
+
 	public bool wallJumpEnabled = false;		//wallJump ON/OFF
 	public bool wallSlideEnabled = false;
 	public LayerMask whatIsWall;
@@ -36,6 +40,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
+		audio = GetComponent<AudioSource>();
 	}
 
 	void FixedUpdate () {
@@ -61,6 +66,8 @@ public class PlayerController : MonoBehaviour {
 
 		if ((grounded || (!doubleJump)) && Input.GetButtonDown ("Jump")) {	//doubleJump or Parameter
 
+			audio.time = 0.5f;
+			audio.Play();
 			//AudioSource.PlayClipAtPoint(jump,this.GetComponent<Transform>().position, jumpVolume);
 
 			anim.SetBool ("Ground", false);
@@ -93,7 +100,6 @@ public class PlayerController : MonoBehaviour {
 			wallJumpDelayCalc -= Time.deltaTime;
 			rb.velocity = new Vector2 (0, 0);
 			rb.gravityScale = 1f;
-			//maxSpeed = -maxSpeed;
 			rb.AddForce(new Vector2((wallJumpPushForce * (facingRight ? -1:1)), wallJumpForce));
 		}
 	
