@@ -16,6 +16,8 @@ public class EnemyFlying : MonoBehaviour {
 	public float chargeDistance;
 	public bool canCharge = true;
 	public float chargeSpeed = 150;
+	Vector2 chargeDirection;
+	public bool chargePuffer = false;
 
 	// Use this for initialization
 	void Start () {
@@ -28,8 +30,8 @@ public class EnemyFlying : MonoBehaviour {
 
 		distance = Vector2.Distance(transform.position, target.position);
 
-		if (alive && !attack && (distance < followDistance) && (distance > chargeDistance)) {
-			
+		if (!chargePuffer && alive && !attack && (distance < followDistance) && (distance > chargeDistance)) {
+
 			canCharge = true;
 			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
@@ -43,8 +45,9 @@ public class EnemyFlying : MonoBehaviour {
 		else if (!alive) {
 			anim.SetBool ("Alive", false);
 		}
-		else if (alive && !attack && (distance < followDistance) && (distance < chargeDistance) && canCharge) {
+		else if (!chargePuffer && alive && !attack && (distance < followDistance) && (distance < chargeDistance) && canCharge) {
 
+			chargePuffer = true;
 			canCharge = false;
 			anim.SetBool ("Charge", true);
 			move = transform.position.x - target.position.x;
@@ -70,6 +73,10 @@ public class EnemyFlying : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col) {
 
+		if (((col.gameObject.tag == "Terrain") || (col.gameObject.tag == "LaserDestruction")) && chargePuffer) {
+			rb.velocity = new Vector2 (0, 0);
+		}
+
 		if (col.gameObject.tag == "Projektil") {
 			alive = false;
 			rb.velocity = new Vector2 (0, 0);
@@ -89,6 +96,20 @@ public class EnemyFlying : MonoBehaviour {
 
 	}
 
+	void OnCollisionExit2D(Collision2D col) {
+
+		if (col.gameObject.tag == "Player") {
+			rb.velocity = new Vector2 (0, 0);
+		}
+	}
+
+	void OnCollisionStay2D(Collision2D col) {
+
+		if (col.gameObject.tag == "Player") {
+			anim.SetBool ("Attack", true);
+		}
+	}
+
 	public void Remove () {
 		Destroy(gameObject);
 	}
@@ -96,16 +117,16 @@ public class EnemyFlying : MonoBehaviour {
 	public void Angriff () {
 		anim.SetBool ("Attack", false);
 		attack = false;
+		chargePuffer = false;
+		canCharge = true;
 	}
 
 	public void Charge () {
 
-		if ((target.position.x - transform.position.x) < 0) {
-			rb.AddForce(new Vector2 ((-1) * chargeSpeed, 0));
-		}
-		else if ((target.position.x - transform.position.x) > 0) {
-			rb.AddForce(new Vector2 ((1) * chargeSpeed, 0));
-		}
+		chargeDirection = target.transform.position - transform.position;
+
+		rb.AddRelativeForce((chargeDirection.normalized) * chargeSpeed);
+
 		anim.SetBool ("Charge", false);
 	}
 
@@ -114,6 +135,13 @@ public class EnemyFlying : MonoBehaviour {
 		canCharge = true;
 		rb.velocity = new Vector2 (0, 0);
 		anim.SetTrigger ("Charged");
+		anim.SetBool ("Charge", false);
+		chargePuffer = false;
 	}
+
+	public void stop () {
+		rb.velocity = new Vector2 (0, 0);
+	}
+
 
 }

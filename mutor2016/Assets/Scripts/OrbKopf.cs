@@ -12,6 +12,8 @@ public class OrbKopf : MonoBehaviour {
 	public int laserCount;
 	bool laserShootable;
 	Animator anim;
+	public GameObject kopfAnim;
+	Animator animKopf;
 	//public AudioClip bombThrow;
 	//public float throwVolume;
 
@@ -19,6 +21,7 @@ public class OrbKopf : MonoBehaviour {
 	void Start () {
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
+		animKopf = kopfAnim.GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
@@ -32,7 +35,7 @@ public class OrbKopf : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.P) && laserShootable) {
-
+			animKopf.SetTrigger ("KopfLaser");
 			//AudioSource.PlayClipAtPoint (bombThrow, bombStart.position, throwVolume);
 			//anim.SetTrigger ("Throw");
 			Shoot();
