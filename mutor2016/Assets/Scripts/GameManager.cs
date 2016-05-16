@@ -4,6 +4,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
+	public bool OrbKopf = false;
 		
 	// Use this for initialization
 	void Awake () {

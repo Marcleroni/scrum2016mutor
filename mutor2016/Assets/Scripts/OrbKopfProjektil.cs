@@ -5,6 +5,7 @@ public class OrbKopfProjektil : MonoBehaviour {
 
 	public Vector2 vel;
 	Rigidbody2D rb;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -13,6 +14,12 @@ public class OrbKopfProjektil : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		vel = rb.velocity;
+
+	//	if (rb.velocity.x < 0)									//Flip um Y-Achse
+	//		Flip ();
+	//	else if (rb.velocity.x > 0)
+	//		Flip ();
+
 	}
 
 	void OnCollisionEnter2D(Collision2D col) {
@@ -30,5 +37,15 @@ public class OrbKopfProjektil : MonoBehaviour {
 		}
 
 	}
+
+	public void Flip () {
+
+		//pc.facingRight = !pc.facingRight;
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
+
+	}
+
 
 }

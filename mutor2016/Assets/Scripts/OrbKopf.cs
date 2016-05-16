@@ -52,6 +52,9 @@ public class OrbKopf : MonoBehaviour {
 		}
 		else if (!pc.facingRight) {
 			rblaser.velocity = new Vector2(-laserSpeed, 0);
+			Vector3 theScale = rblaser.transform.localScale;
+			theScale.x *= -1;
+			rblaser.transform.localScale = theScale;
 		}
 			
 		Physics2D.IgnoreCollision(rblaser.GetComponent<Collider2D>(),  GetComponent<Collider2D>());
