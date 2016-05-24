@@ -1,26 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EnemyFlying.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Splitter.cs">
     <Files>
-<<<<<<< HEAD
-      <File FileName="Assets/Scripts/EnemyFlying.cs" Line="27" Column="53" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="18" Column="33" />
-      <File FileName="Assets/Scripts/OrbKopf.cs" Line="7" Column="32" />
-      <File FileName="Assets/Scripts/BombScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/OrbKopfProjektil.cs" Line="15" Column="21" />
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="41" Column="3" />
-      <File FileName="Assets/Scripts/LayBomb.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Loader.cs" Line="1" Column="1" />
-=======
-      <File FileName="Assets/Scripts/EnemyFlying.cs" Line="9" Column="28" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="18" Column="33" />
-      <File FileName="Assets/Scripts/OrbKopf.cs" Line="34" Column="56" />
-      <File FileName="Assets/Scripts/BombScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Splitter.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="46" Column="3" />
+      <File FileName="Assets/Scripts/CameraController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/EnemyFlying.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/OrbKopfProjektil.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="159" Column="3" />
-      <File FileName="Assets/Scripts/LayBomb.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Loader.cs" Line="7" Column="1" />
->>>>>>> programming
+      <File FileName="Assets/Scripts/OrbKopf.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Loader.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/OrbKopfItem.cs" Line="22" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
