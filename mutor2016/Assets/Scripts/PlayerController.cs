@@ -67,10 +67,32 @@ public class PlayerController : MonoBehaviour {
 
 		GameManager manager = gameManager.GetComponent<GameManager>();
 
-		if (manager.OrbKopf == true) {
-			anim.SetBool("OrbKopf",true);
+		if (manager.OrbKopf == true) {					//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Orb Animator Bool
+			anim.SetBool ("OrbKopf", true);
+			anim.SetBool ("OrbKrallen", false);
+			anim.SetBool ("OrbBeine", false);
+			anim.SetBool ("OrbFluegel", false);
 
+		} else if (manager.OrbKrallen == true) {
+			anim.SetBool ("OrbKopf", false);
+			anim.SetBool ("OrbKrallen", true);
+			anim.SetBool ("OrbBeine", false);
+			anim.SetBool ("OrbFluegel", false);
+
+		} else if (manager.OrbBeine == true) {
+			anim.SetBool ("OrbKopf", false);
+			anim.SetBool ("OrbKrallen", false);
+			anim.SetBool ("OrbBeine", true);
+			anim.SetBool ("OrbFluegel", false);
+
+		} else if (manager.OrbFlügel == true) {
+			anim.SetBool ("OrbKopf", false);
+			anim.SetBool ("OrbKrallen", false);
+			anim.SetBool ("OrbBeine", false);
+			anim.SetBool ("OrbFluegel", true);
 		}
+
+
 
 	}
 
