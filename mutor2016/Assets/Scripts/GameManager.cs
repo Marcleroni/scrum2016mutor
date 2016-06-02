@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject player;
 	public static GameManager instance = null;
 
+	public int Leben = 8;
+
 	public int SplitterCounter = 0;
 
 	public int OrbCounter = 0;

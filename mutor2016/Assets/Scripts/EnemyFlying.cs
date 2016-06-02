@@ -19,10 +19,13 @@ public class EnemyFlying : MonoBehaviour {
 	Vector2 chargeDirection;
 	public bool chargePuffer = false;
 
+	public GameObject gameManager;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
+		gameManager = GameObject.FindGameObjectWithTag("GameManager");
 	}
 
 	void FixedUpdate () {
@@ -77,7 +80,7 @@ public class EnemyFlying : MonoBehaviour {
 			rb.velocity = new Vector2 (0, 0);
 		}
 
-		if (col.gameObject.tag == "Projektil") {
+		if (col.gameObject.tag == "Projektil" && alive) {
 			alive = false;
 			rb.velocity = new Vector2 (0, 0);
 			if (!facingRight)									
@@ -89,6 +92,8 @@ public class EnemyFlying : MonoBehaviour {
 			anim.SetBool ("Landed", true);
 		}
 		else if (col.gameObject.tag == "Player") {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+			manager.Leben--; 
 			rb.velocity = new Vector2 (0, 0);
 			anim.SetBool ("Attack", true);
 			attack = true;
@@ -131,7 +136,6 @@ public class EnemyFlying : MonoBehaviour {
 	}
 
 	public void Charged () {
-		Debug.Log("Reset1");
 		canCharge = true;
 		rb.velocity = new Vector2 (0, 0);
 		anim.SetTrigger ("Charged");

@@ -1,17 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SpriteChanger.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Boss1.cs">
     <Files>
-      <File FileName="Assets\Scripts\SpriteChanger.cs" Line="29" Column="43" />
+      <File FileName="Assets\Scripts\Boss1.cs" Line="66" Column="6" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="14" Column="33" />
       <File FileName="Assets\Scripts\Splitter.cs" Line="20" Column="4" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CameraController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnemyFlying.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\OrbKopfProjektil.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\OrbKopf.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameManager.cs" Line="10" Column="33" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="10" Column="23" />
       <File FileName="Assets\Scripts\Loader.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OrbKopfItem.cs" Line="25" Column="3" />
+      <File FileName="Assets\Scripts\OrbKopfItem.cs" Line="36" Column="27" />
+      <File FileName="Assets\Scripts\EnemyFlying.cs" Line="95" Column="4" />
+      <File FileName="Assets\Scripts\UILeben.cs" Line="7" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

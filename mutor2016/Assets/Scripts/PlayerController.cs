@@ -3,10 +3,15 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	public float maxSpeed = 1.6f;
+	float maxSpeed;
+	public float normalSpeed = 1.6f;
+
 	public bool facingRight = true;
 	Rigidbody2D rb;
 	Animator anim;
+
+	public float move;
+	public bool moveTrigger = false;
 
 	bool grounded = false;
 	bool grounddist = false;
@@ -36,6 +41,9 @@ public class PlayerController : MonoBehaviour {
 	public float wallJumpControlDelay = 0.15f;
 	public float wallJumpDelayCalc = 0;
 
+	public bool fastRunning = false;
+	public float runningSpeed = 4.0f;
+
 	public GameObject gameManager;
 
 
@@ -44,12 +52,13 @@ public class PlayerController : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		audio = GetComponent<AudioSource>();
 		gameManager = GameObject.FindGameObjectWithTag("GameManager");
-
 		}
 
 	void FixedUpdate () {
 
-		float move = Input.GetAxis ("Horizontal");						//normales Movement
+		if (!moveTrigger) {
+			move = Input.GetAxis ("Horizontal");
+		}																	//normales Movement
 		rb.velocity = new Vector2(move * maxSpeed, rb.velocity.y); 
 
 		if (move > 0 && !facingRight)									//Flip um Y-Achse
@@ -73,11 +82,27 @@ public class PlayerController : MonoBehaviour {
 			anim.SetBool ("OrbBeine", false);
 			anim.SetBool ("OrbFluegel", false);
 
+			doubleJumpEnabled = false;
+			doubleJump = true;
+
+			wallJumpEnabled = false;
+			wallSlideEnabled = false;
+
+			fastRunning = false;
+
 		} else if (manager.OrbKrallen == true) {
 			anim.SetBool ("OrbKopf", false);
 			anim.SetBool ("OrbKrallen", true);
 			anim.SetBool ("OrbBeine", false);
 			anim.SetBool ("OrbFluegel", false);
+
+			doubleJumpEnabled = false;
+			doubleJump = true;
+
+			wallJumpEnabled = true;
+			wallSlideEnabled = true;
+
+			fastRunning = false;
 
 		} else if (manager.OrbBeine == true) {
 			anim.SetBool ("OrbKopf", false);
@@ -85,11 +110,26 @@ public class PlayerController : MonoBehaviour {
 			anim.SetBool ("OrbBeine", true);
 			anim.SetBool ("OrbFluegel", false);
 
+			doubleJumpEnabled = false;
+			doubleJump = true;
+
+			wallJumpEnabled = false;
+			wallSlideEnabled = false;
+
+			fastRunning = true;
+
 		} else if (manager.OrbFlügel == true) {
 			anim.SetBool ("OrbKopf", false);
 			anim.SetBool ("OrbKrallen", false);
 			anim.SetBool ("OrbBeine", false);
 			anim.SetBool ("OrbFluegel", true);
+
+			doubleJumpEnabled = true;
+
+			wallJumpEnabled = false;
+			wallSlideEnabled = false;
+
+			fastRunning = false;
 		}
 
 
@@ -147,11 +187,18 @@ public class PlayerController : MonoBehaviour {
 			wallJumpDelayCalc = wallJumpControlDelay;
 		}
 
+		if (fastRunning) {
+			maxSpeed = runningSpeed;
+		} else {
+			maxSpeed = normalSpeed;
+		}
+
 	
 	}
 
 
 	void OnCollisionEnter2D(Collision2D coll) {
+
 		if ((coll.gameObject.layer == 9) && wallSlideEnabled) {
 			wallJumpDelayCalc = wallJumpControlDelay;
 		}
