@@ -12,16 +12,20 @@ public class OrbKopf : MonoBehaviour {
 	bool laserShootable;
 	public GameObject kopfAnim;
 	Animator animKopf;
+
 	//public AudioClip bombThrow;
 	//public float throwVolume;
 
 	// Use this for initialization
 	void Start () {
 		animKopf = kopfAnim.GetComponent<Animator>();
+
 	}
 
 	// Update is called once per frame
 	void Update () {
+
+		PlayerController pc = GetComponent<PlayerController>();
 
 		if (laserCount < laserMax) {
 			laserShootable = true;
@@ -30,7 +34,7 @@ public class OrbKopf : MonoBehaviour {
 			laserShootable = false;
 		}
 
-		if (Input.GetKeyDown (KeyCode.P) && laserShootable) {
+		if (pc.shootLaser && laserShootable) {
 			animKopf.SetTrigger ("KopfLaser");
 			//AudioSource.PlayClipAtPoint (bombThrow, bombStart.position, throwVolume);
 			//anim.SetTrigger ("Throw");
@@ -59,5 +63,6 @@ public class OrbKopf : MonoBehaviour {
 		Physics2D.IgnoreCollision(rblaser.GetComponent<Collider2D>(),  GetComponent<Collider2D>());
 
 		laserCount++;		//Counter für Projektile
+		pc.shootLaser = false;
 	}
 }

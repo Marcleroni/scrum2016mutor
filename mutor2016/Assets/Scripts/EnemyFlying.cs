@@ -5,6 +5,7 @@ public class EnemyFlying : MonoBehaviour {
 
 	Rigidbody2D rb;
 	public Transform target;
+	public int Leben = 1;
 	public float speed = 1;
 	public bool facingRight = true;
 	public float move;
@@ -20,6 +21,7 @@ public class EnemyFlying : MonoBehaviour {
 	public bool chargePuffer = false;
 
 	public GameObject gameManager;
+	public GameObject Player;
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +29,7 @@ public class EnemyFlying : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		gameManager = GameObject.FindGameObjectWithTag("GameManager");
 	}
-
+		
 	void FixedUpdate () {
 
 
@@ -81,17 +83,16 @@ public class EnemyFlying : MonoBehaviour {
 		}
 
 		if (col.gameObject.tag == "Projektil" && alive) {
-			alive = false;
-			rb.velocity = new Vector2 (0, 0);
-			if (!facingRight)									
-				transform.Rotate (0,-180,146);
-			else if (facingRight)
-				transform.Rotate (0,-180,-146);
+			if (Leben < 2) {
+				Death ();
+			} else if (Leben > 1) {
+				Leben--;
+			}
 		}
 		else if (col.gameObject.tag == "Terrain" && !alive) {
 			anim.SetBool ("Landed", true);
 		}
-		else if (col.gameObject.tag == "Player") {
+		else if (col.gameObject.tag == "Player" && alive) {
 			GameManager manager = gameManager.GetComponent<GameManager>();
 			manager.Leben--; 
 			rb.velocity = new Vector2 (0, 0);
@@ -114,6 +115,45 @@ public class EnemyFlying : MonoBehaviour {
 			anim.SetBool ("Attack", true);
 		}
 	}
+
+	void OnTriggerStay2D (Collider2D col) {
+		if (col.gameObject.tag == "Player") {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+			PlayerController control = Player.GetComponent<PlayerController>();
+			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey) && alive) {
+				if (Leben < 2) {
+					Death ();
+				} else if (Leben > 1) {
+					Leben--;
+				}
+			}
+		}
+	}
+
+	void OnTriggerEnter2D (Collider2D col) {
+		if (col.gameObject.tag == "Player") {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+			PlayerController control = Player.GetComponent<PlayerController>();
+			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey) && alive) {
+				if (Leben < 2) {
+					Death ();
+				} else if (Leben > 1) {
+					Leben--;
+				}
+			}
+		}
+	}
+
+	public void Death () {
+
+		alive = false;
+		rb.velocity = new Vector2 (0, 0);
+		if (!facingRight)									
+			transform.Rotate (0,-180,146);
+		else if (facingRight)
+			transform.Rotate (0,-180,-146);
+	}
+
 
 	public void Remove () {
 		Destroy(gameObject);

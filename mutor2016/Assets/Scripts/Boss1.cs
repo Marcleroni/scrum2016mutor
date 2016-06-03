@@ -18,7 +18,7 @@ public class Boss1 : MonoBehaviour {
 	public float chargeSpeed;
 	public float chargeY;
 	public Vector2 posAtChargeStart;
-	bool isCharging = false;
+	public bool isCharging = false;
 	public float chargeLanding;
 	public float landingDistance;
 	public float yDist;
@@ -122,12 +122,33 @@ public class Boss1 : MonoBehaviour {
 				//col.gameObject.GetComponent<Rigidbody2D>().AddRelativeForce (new Vector2 (500, 300));
 			}
 
-			Debug.Log ("Hit");
+			//Debug.Log ("Hit");
 			anim.SetBool ("Charge", false);
 			isCharging = false;
 		}
 
 	}
 
+//-------------------------------------------------- Krallen Hit --------------------------------------------------------------------
+
+	void OnTriggerStay2D (Collider2D col) {
+		if (col.gameObject.tag == "Player") {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+			PlayerController control = Player.GetComponent<PlayerController>();
+			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey)) {
+				Debug.Log ("BossHit");
+			}
+		}
+	}
+
+	void OnTriggerEnter2D (Collider2D col) {
+		if (col.gameObject.tag == "Player") {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+			PlayerController control = Player.GetComponent<PlayerController>();
+			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey)) {
+				Debug.Log ("BossHit");
+			}
+		}
+	}
 
 }

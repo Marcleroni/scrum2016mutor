@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour {
 	public bool fastRunning = false;
 	public float runningSpeed = 4.0f;
 
+	public bool shootLaser = false;
+
+	public KeyCode ActionKey = KeyCode.P; //Taste für alle Attacken
+
 	public GameObject gameManager;
 
 
@@ -73,6 +77,8 @@ public class PlayerController : MonoBehaviour {
 
 		if (grounded && doubleJumpEnabled)												//doubleJump reset
 			doubleJump = false;
+
+//-------------------------------------------------- Orb-Controller --------------------------------------------------------------------
 
 		GameManager manager = gameManager.GetComponent<GameManager>();
 
@@ -131,11 +137,9 @@ public class PlayerController : MonoBehaviour {
 
 			fastRunning = false;
 		}
-
-
-
 	}
 
+//-------------------------------------------------- Update --------------------------------------------------------------------
 	void Update () {
 
 		if ((grounded || (!doubleJump)) && Input.GetButtonDown ("Jump")) {	//doubleJump or Parameter
@@ -180,6 +184,7 @@ public class PlayerController : MonoBehaviour {
 		if (grounded) {											//Reset Wall Jump Delay on Ground
 			rb.gravityScale = 1f;
 			wallJumpDelayCalc = wallJumpControlDelay;
+			anim.SetBool ("Climb", false);
 		}
 			
 		if (wallJumpDelayCalc < 0) {
@@ -193,16 +198,35 @@ public class PlayerController : MonoBehaviour {
 			maxSpeed = normalSpeed;
 		}
 
+//-------------------------------------------------- Attack-Controller --------------------------------------------------------------------
+
+		if (Input.GetKeyDown (ActionKey)) {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+
+			if (manager.OrbKopf == true) {
+				shootLaser = true;
+			} else if (manager.GotOrbKrallen == true) {
+				anim.SetBool ("AttackKrallen", true);
+			}
+		}
 	
 	}
+//-------------------------------------------------- Krallen Reset ----------------------------------------------------------------------
 
+	public void KrallenReset () {
+		anim.SetBool ("AttackKrallen", false);
+	}
 
+//-------------------------------------------------- Collision Enter --------------------------------------------------------------------
 	void OnCollisionEnter2D(Collision2D coll) {
 
 		if ((coll.gameObject.layer == 9) && wallSlideEnabled) {
 			wallJumpDelayCalc = wallJumpControlDelay;
+			anim.SetBool ("Climb", true);
 		}
 	}
+
+//-------------------------------------------------- Collision Stay --------------------------------------------------------------------
 
 	void OnCollisionStay2D(Collision2D coll) {
 		if ((coll.gameObject.layer == 9) && wallSlideEnabled) {
@@ -221,10 +245,13 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+//-------------------------------------------------- Collision Exit --------------------------------------------------------------------
+
 	void OnCollisionExit2D(Collision2D coll) {
 		if ((coll.gameObject.layer == 9) && wallSlideEnabled) {
 			rb.gravityScale = 1f;
 			wallJumpDelayCalc -= Time.deltaTime;
+			anim.SetBool ("Climb", false);
 		}
 
 	}
