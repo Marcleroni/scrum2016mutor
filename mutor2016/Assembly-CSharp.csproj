@@ -47,9 +47,11 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BombScript.cs" />
      <Compile Include="Assets\Scripts\Boss1.cs" />
+     <Compile Include="Assets\Scripts\Boss1Hit.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\EnemyFlying.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\KrallenHit.cs" />
      <Compile Include="Assets\Scripts\LayBomb.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\OrbKopf.cs" />

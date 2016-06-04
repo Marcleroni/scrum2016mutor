@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour {
 	Animator anim;
 
 	public float move;
-	public bool moveTrigger = false;
 
 	bool grounded = false;
 	bool grounddist = false;
@@ -60,9 +59,8 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		if (!moveTrigger) {
-			move = Input.GetAxis ("Horizontal");
-		}																	//normales Movement
+		move = Input.GetAxis ("Horizontal");			//normales Movement
+
 		rb.velocity = new Vector2(move * maxSpeed, rb.velocity.y); 
 
 		if (move > 0 && !facingRight)									//Flip um Y-Achse

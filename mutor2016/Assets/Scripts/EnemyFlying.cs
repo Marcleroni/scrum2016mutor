@@ -93,6 +93,8 @@ public class EnemyFlying : MonoBehaviour {
 			anim.SetBool ("Landed", true);
 		}
 		else if (col.gameObject.tag == "Player" && alive) {
+
+			rb.isKinematic = true;
 			GameManager manager = gameManager.GetComponent<GameManager>();
 			manager.Leben--; 
 			rb.velocity = new Vector2 (0, 0);
@@ -105,6 +107,7 @@ public class EnemyFlying : MonoBehaviour {
 	void OnCollisionExit2D(Collision2D col) {
 
 		if (col.gameObject.tag == "Player") {
+			rb.isKinematic = false;
 			rb.velocity = new Vector2 (0, 0);
 		}
 	}
@@ -171,6 +174,13 @@ public class EnemyFlying : MonoBehaviour {
 		chargeDirection = target.transform.position - transform.position;
 
 		rb.AddRelativeForce((chargeDirection.normalized) * chargeSpeed);
+
+		move = transform.position.x - target.position.x;
+
+		if (move > 0 && !facingRight)									//Flip um Y-Achse
+			Flip ();
+		else if (move < 0 && facingRight)
+			Flip ();
 
 		anim.SetBool ("Charge", false);
 	}
