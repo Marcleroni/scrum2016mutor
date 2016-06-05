@@ -26,6 +26,15 @@ public class KrallenHit : MonoBehaviour {
 			}
 		}
 
+		if (col.gameObject.tag == "EnemyFlying1") {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+			PlayerController control = GetComponentInParent<PlayerController>();
+			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey)) {
+				EnemyFlying FlyScript = col.gameObject.GetComponent<EnemyFlying> ();
+				FlyScript.Leben--;
+			}
+		}
+
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
@@ -36,6 +45,15 @@ public class KrallenHit : MonoBehaviour {
 				Debug.Log ("BossHit");
 				Boss1 BossScript = col.gameObject.GetComponent<Boss1> ();
 				BossScript.BossLeben--;
+			}
+		}
+
+		if (col.gameObject.tag == "EnemyFlying1") {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+			PlayerController control = GetComponentInParent<PlayerController>();
+			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey)) {
+				EnemyFlying FlyScript = col.gameObject.GetComponent<EnemyFlying> ();
+				FlyScript.Leben--;
 			}
 		}
 	}

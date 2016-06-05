@@ -54,6 +54,8 @@
      <Compile Include="Assets\Scripts\KrallenHit.cs" />
      <Compile Include="Assets\Scripts\LayBomb.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
+     <Compile Include="Assets\Scripts\OrbFlügel.cs" />
+     <Compile Include="Assets\Scripts\OrbFügelProjektil.cs" />
      <Compile Include="Assets\Scripts\OrbKopf.cs" />
      <Compile Include="Assets\Scripts\OrbKopfItem.cs" />
      <Compile Include="Assets\Scripts\OrbKopfProjektil.cs" />

@@ -1,20 +1,22 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Boss1.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\OrbFügelProjektil.cs">
     <Files>
-      <File FileName="Assets\Scripts\Boss1.cs" Line="100" Column="18" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="81" Column="3" />
-      <File FileName="Assets\Scripts\KrallenHit.cs" Line="38" Column="28" />
-      <File FileName="Assets\Scripts\Boss1Hit.cs" Line="38" Column="66" />
+      <File FileName="Assets\Scripts\OrbFlügel.cs" Line="58" Column="17" />
+      <File FileName="Assets\Scripts\OrbKopf.cs" Line="26" Column="18" />
+      <File FileName="Assets\Scripts\Boss1.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="19" Column="9" />
+      <File FileName="Assets\Scripts\EnemyFlying.cs" Line="123" Column="4" />
+      <File FileName="Assets\Scripts\Boss1Hit.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Splitter.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CameraController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OrbKopfProjektil.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OrbKopf.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OrbFügelProjektil.cs" Line="20" Column="41" />
+      <File FileName="Assets\Scripts\OrbKopfProjektil.cs" Line="18" Column="2" />
       <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Loader.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\OrbKopfItem.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnemyFlying.cs" Line="183" Column="12" />
       <File FileName="Assets\Scripts\UILeben.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\KrallenHit.cs" Line="23" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

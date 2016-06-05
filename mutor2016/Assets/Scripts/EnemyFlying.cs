@@ -63,7 +63,9 @@ public class EnemyFlying : MonoBehaviour {
 				Flip ();
 		}
 
-
+		if ((Leben < 1) && alive) {
+			Death ();
+		}
 
 	}
 
@@ -88,9 +90,6 @@ public class EnemyFlying : MonoBehaviour {
 			} else if (Leben > 1) {
 				Leben--;
 			}
-		}
-		else if (col.gameObject.tag == "Terrain" && !alive) {
-			anim.SetBool ("Landed", true);
 		}
 		else if (col.gameObject.tag == "Player" && alive) {
 
@@ -119,31 +118,10 @@ public class EnemyFlying : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerStay2D (Collider2D col) {
-		if (col.gameObject.tag == "Player") {
-			GameManager manager = gameManager.GetComponent<GameManager>();
-			PlayerController control = Player.GetComponent<PlayerController>();
-			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey) && alive) {
-				if (Leben < 2) {
-					Death ();
-				} else if (Leben > 1) {
-					Leben--;
-				}
-			}
-		}
-	}
-
-	void OnTriggerEnter2D (Collider2D col) {
-		if (col.gameObject.tag == "Player") {
-			GameManager manager = gameManager.GetComponent<GameManager>();
-			PlayerController control = Player.GetComponent<PlayerController>();
-			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey) && alive) {
-				if (Leben < 2) {
-					Death ();
-				} else if (Leben > 1) {
-					Leben--;
-				}
-			}
+	void OnTriggerEnter2D(Collider2D col) {
+		if (col.gameObject.tag == "Terrain" && !alive) {
+			rb.isKinematic = true;
+			anim.SetBool ("Landed", true);
 		}
 	}
 
@@ -155,6 +133,7 @@ public class EnemyFlying : MonoBehaviour {
 			transform.Rotate (0,-180,146);
 		else if (facingRight)
 			transform.Rotate (0,-180,-146);
+		gameObject.GetComponent<PolygonCollider2D> ().isTrigger = true;
 	}
 
 

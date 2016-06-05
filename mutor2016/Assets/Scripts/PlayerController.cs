@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 	bool grounddist = false;
 	public Transform groundCheck;
 	public Transform distCheck;
-	float groundRadius = 0.02f;
+	public float groundRadius = 0.02f;
 	public LayerMask whatIsGround;
 	public float jumpForce = 200;
 
@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour {
 	public float runningSpeed = 4.0f;
 
 	public bool shootLaser = false;
+
+	public bool shootWings = false;
 
 	public KeyCode ActionKey = KeyCode.P; //Taste für alle Attacken
 
@@ -203,8 +205,11 @@ public class PlayerController : MonoBehaviour {
 
 			if (manager.OrbKopf == true) {
 				shootLaser = true;
-			} else if (manager.GotOrbKrallen == true) {
+			} else if (manager.OrbKrallen == true) {
 				anim.SetBool ("AttackKrallen", true);
+			} else if (manager.OrbFlügel == true) {
+				anim.SetBool ("AttackWings", true);
+				shootWings = true;
 			}
 		}
 	
@@ -213,6 +218,12 @@ public class PlayerController : MonoBehaviour {
 
 	public void KrallenReset () {
 		anim.SetBool ("AttackKrallen", false);
+	}
+
+//-------------------------------------------------- Wings Reset ----------------------------------------------------------------------
+
+	public void WingsReset () {
+		anim.SetBool ("AttackWings", false);
 	}
 
 //-------------------------------------------------- Collision Enter --------------------------------------------------------------------
