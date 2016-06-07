@@ -13,6 +13,7 @@ public class Boss1 : MonoBehaviour {
 	bool alive = true;
 
 	public Transform target;				//Angriffsziel = Player
+	public float followDist = 4f;
 	public float distance;					//Distanz zwischen Boss und Player
 	public float chargeDistanceMax;			//Höchstabstand für Charge
 	public float chargeDistanceMin;			//Mindestabstand für Charge
@@ -56,7 +57,7 @@ public class Boss1 : MonoBehaviour {
 		landingDistance = Vector2.Distance (transform.position, posAtChargeStart);
 
 //--------------------------------------------------Movement Boss-----------------------------------------------------------------------
-		if (((distance < chargeDistanceMin) || (distance > chargeDistanceMax) || (yDist > yDistCharge)) && !isCharging && (distance > attackDistance) && !chargePuffer && !attackPuffer && alive) {
+		if (((distance < chargeDistanceMin) || (distance > chargeDistanceMax) || (yDist > yDistCharge)) && !isCharging && (distance > attackDistance) && !chargePuffer && !attackPuffer && alive && (distance < followDist)) {
 			transform.position = Vector2.MoveTowards (transform.position, (new Vector2 (target.position.x, transform.position.y)), speed * Time.deltaTime);
 
 			move = transform.position.x - target.position.x;

@@ -45,14 +45,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\BombScript.cs" />
      <Compile Include="Assets\Scripts\Boss1.cs" />
      <Compile Include="Assets\Scripts\Boss1Hit.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\EnemyFlying.cs" />
+     <Compile Include="Assets\Scripts\FallReset.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\KrallenHit.cs" />
-     <Compile Include="Assets\Scripts\LayBomb.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\OrbFlügel.cs" />
      <Compile Include="Assets\Scripts\OrbFügelProjektil.cs" />
@@ -60,9 +59,11 @@
      <Compile Include="Assets\Scripts\OrbKopfItem.cs" />
      <Compile Include="Assets\Scripts\OrbKopfProjektil.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\RobotController.cs" />
      <Compile Include="Assets\Scripts\Splitter.cs" />
+     <Compile Include="Assets\Scripts\UIBossLeben.cs" />
      <Compile Include="Assets\Scripts\UILeben.cs" />
+     <Compile Include="Assets\Scripts\UISPlitter.cs" />
+     <Compile Include="Assets\Scripts\WallTrigger.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files (x86)/Unity 3D/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

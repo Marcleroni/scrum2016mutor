@@ -9,7 +9,7 @@ public class EnemyFlying : MonoBehaviour {
 	public float speed = 1;
 	public bool facingRight = true;
 	public float move;
-	bool alive = true;
+	public bool alive = true;
 	bool attack = false;
 	Animator anim;
 	public float distance;
@@ -105,7 +105,7 @@ public class EnemyFlying : MonoBehaviour {
 
 	void OnCollisionExit2D(Collision2D col) {
 
-		if (col.gameObject.tag == "Player") {
+		if (col.gameObject.tag == "Player" && alive) {
 			rb.isKinematic = false;
 			rb.velocity = new Vector2 (0, 0);
 		}
@@ -113,7 +113,7 @@ public class EnemyFlying : MonoBehaviour {
 
 	void OnCollisionStay2D(Collision2D col) {
 
-		if (col.gameObject.tag == "Player") {
+		if (col.gameObject.tag == "Player" && alive) {
 			anim.SetBool ("Attack", true);
 		}
 	}
@@ -127,6 +127,7 @@ public class EnemyFlying : MonoBehaviour {
 
 	public void Death () {
 
+		rb.isKinematic = false;
 		alive = false;
 		rb.velocity = new Vector2 (0, 0);
 		if (!facingRight)									

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 using System.Collections;
 
 public class CameraController : MonoBehaviour {
@@ -12,19 +12,42 @@ public class CameraController : MonoBehaviour {
 	public bool bounds;
 	public Vector3 min;
 	public Vector3 max;
+	public float saver;
+
+	public bool camFollow = true;
+	public float valueUp = 2;
 
 	// Use this for initialization
 	void Start () {
 		//player = GameObject.FindGameObjectWithTag("Player");
 	}
-	
+
+	void FixedUpdate () {
+
+		if (Input.GetAxis ("Vertical") > 0) {		//CAM Move Up On W Press
+			camFollow = false;
+		} else {
+			camFollow = true;
+		}
+
+		if (camFollow) {
+			saver = transform.position.y;
+		}
+
+	}
+
 	// Update is called once per frame
 	void LateUpdate () {
 
-		float posX = Mathf.SmoothDamp(transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
-		float posY = Mathf.SmoothDamp(transform.position.y, player.transform.position.y, ref velocity.y, smoothTimeY);
-
-		transform.position = new Vector3 (posX, posY, transform.position.z);
+		if (camFollow) {
+			float posX = Mathf.SmoothDamp (transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
+			float posY = Mathf.SmoothDamp (transform.position.y, player.transform.position.y, ref velocity.y, smoothTimeY);
+			transform.position = new Vector3 (posX, posY, transform.position.z);
+		} else if (!camFollow) {
+			float posX = Mathf.SmoothDamp (transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
+			float posY = Mathf.SmoothDamp (transform.position.y,saver + valueUp, ref velocity.y, smoothTimeY);
+			transform.position = new Vector3 (posX, posY, transform.position.z);
+		}
 
 		if (bounds) {
 

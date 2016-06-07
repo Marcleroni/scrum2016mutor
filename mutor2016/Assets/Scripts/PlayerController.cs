@@ -14,8 +14,13 @@ public class PlayerController : MonoBehaviour {
 
 	bool grounded = false;
 	bool grounddist = false;
+	bool dist1 = false;
+	bool dist2 = false;
 	public Transform groundCheck;
 	public Transform distCheck;
+	public Transform distCheck2;
+	public Transform checkLanding1;
+	public Transform checkLanding2;
 	public float groundRadius = 0.02f;
 	public LayerMask whatIsGround;
 	public float jumpForce = 200;
@@ -61,17 +66,20 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		move = Input.GetAxis ("Horizontal");			//normales Movement
+		GameManager manager = gameManager.GetComponent<GameManager>();
 
-		rb.velocity = new Vector2(move * maxSpeed, rb.velocity.y); 
+		if (manager.alive) {
+			move = Input.GetAxis ("Horizontal");			//normales Movement
 
-		if (move > 0 && !facingRight)									//Flip um Y-Achse
-			Flip ();
-		else if (move < 0 && facingRight)
-			Flip ();
+			rb.velocity = new Vector2(move * maxSpeed, rb.velocity.y); 
 
-		anim.SetFloat ("Speed", Mathf.Abs (move));						//Walk transition
+			if (move > 0 && !facingRight)									//Flip um Y-Achse
+				Flip ();
+			else if (move < 0 && facingRight)
+				Flip ();
 
+			anim.SetFloat ("Speed", Mathf.Abs (move));						//Walk transition
+		}
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);	//Ground detection
 		anim.SetBool ("Ground", grounded);														//Animator Variable
 
@@ -80,7 +88,7 @@ public class PlayerController : MonoBehaviour {
 
 //-------------------------------------------------- Orb-Controller --------------------------------------------------------------------
 
-		GameManager manager = gameManager.GetComponent<GameManager>();
+
 
 		if (manager.OrbKopf == true) {					//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Orb Animator Bool
 			anim.SetBool ("OrbKopf", true);
@@ -142,7 +150,9 @@ public class PlayerController : MonoBehaviour {
 //-------------------------------------------------- Update --------------------------------------------------------------------
 	void Update () {
 
-		if ((grounded || (!doubleJump)) && Input.GetButtonDown ("Jump")) {	//doubleJump or Parameter
+		GameManager manager = gameManager.GetComponent<GameManager>();
+
+		if ((grounded || (!doubleJump)) && Input.GetButtonDown ("Jump") && manager.alive) {	//doubleJump or Parameter
 
 			audio.time = 0.5f;
 			audio.Play();
@@ -167,14 +177,21 @@ public class PlayerController : MonoBehaviour {
 		}
 
 
-		grounddist = Physics2D.Linecast(groundCheck.position, distCheck.position, whatIsGround); //Smooth landing animation
+		dist1 = Physics2D.Linecast(checkLanding1.position, distCheck.position, whatIsGround); //Smooth landing animation
+		dist2 = Physics2D.Linecast(checkLanding2.position, distCheck2.position, whatIsGround);
+
+		if (dist1 || dist2) {
+			grounddist = true;
+		} else {
+			grounddist = false;
+		}
 		anim.SetBool ("Dist", grounddist);
 
 
 
 		onWall = Physics2D.OverlapCircle(wallCheck.position, wallRadius, whatIsWall);	//Wall detection
 
-		if (onWall && !grounded && Input.GetButtonDown ("Jump") && wallJumpEnabled) {					// WallJump
+		if (onWall && !grounded && Input.GetButtonDown ("Jump") && wallJumpEnabled && manager.alive && !(Input.GetButton("Horizontal"))) {					// WallJump
 			wallJumpDelayCalc -= Time.deltaTime;
 			rb.velocity = new Vector2 (0, 0);
 			rb.gravityScale = 1f;
@@ -200,8 +217,7 @@ public class PlayerController : MonoBehaviour {
 
 //-------------------------------------------------- Attack-Controller --------------------------------------------------------------------
 
-		if (Input.GetKeyDown (ActionKey)) {
-			GameManager manager = gameManager.GetComponent<GameManager>();
+		if (Input.GetKeyDown (ActionKey) && manager.alive) {
 
 			if (manager.OrbKopf == true) {
 				shootLaser = true;
@@ -226,12 +242,21 @@ public class PlayerController : MonoBehaviour {
 		anim.SetBool ("AttackWings", false);
 	}
 
+//-------------------------------------------------- Death ----------------------------------------------------------------------
+
+	public void Death () {
+		anim.SetBool ("Death", true);
+		anim.SetTrigger ("DeathTrigger");
+		rb.constraints = RigidbodyConstraints2D.FreezeAll;
+	}
+
 //-------------------------------------------------- Collision Enter --------------------------------------------------------------------
 	void OnCollisionEnter2D(Collision2D coll) {
 
 		if ((coll.gameObject.layer == 9) && wallSlideEnabled) {
 			wallJumpDelayCalc = wallJumpControlDelay;
 			anim.SetBool ("Climb", true);
+			Debug.Log ("TestEnter");
 		}
 	}
 
@@ -239,14 +264,17 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionStay2D(Collision2D coll) {
 		if ((coll.gameObject.layer == 9) && wallSlideEnabled) {
-
-			if(facingRight && (wallJumpDelayCalc == wallJumpControlDelay) && (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)) {			//Wall Slide Right
+			anim.SetBool ("Climb", true);
+			Debug.Log ("TestStay");
+			if(facingRight && (wallJumpDelayCalc == wallJumpControlDelay) && (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") > 0) && onWall) {			//Wall Slide Right
 				rb.velocity = new Vector2 (rb.velocity.x, 0);
 				rb.gravityScale = 0.3f;
+				Debug.Log ("TestSlide");
 			}
-			else if (!facingRight && (wallJumpDelayCalc == wallJumpControlDelay) && (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)) {	//Wall Slide Left
+			else if (!facingRight && (wallJumpDelayCalc == wallJumpControlDelay) && (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") < 0) && onWall) {	//Wall Slide Left
 				rb.velocity = new Vector2 (rb.velocity.x, 0);
 				rb.gravityScale = 0.3f;
+				Debug.Log ("TestSlide");
 			}
 			else {
 				rb.gravityScale = 1f;
@@ -259,7 +287,7 @@ public class PlayerController : MonoBehaviour {
 	void OnCollisionExit2D(Collision2D coll) {
 		if ((coll.gameObject.layer == 9) && wallSlideEnabled) {
 			rb.gravityScale = 1f;
-			wallJumpDelayCalc -= Time.deltaTime;
+			//wallJumpDelayCalc = 0;//Time.deltaTime;
 			anim.SetBool ("Climb", false);
 		}
 

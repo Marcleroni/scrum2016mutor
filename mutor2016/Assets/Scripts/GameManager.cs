@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null;
 
 	public int Leben = 8;
+	public bool alive = true;
 
 	public int SplitterCounter = 0;
 
@@ -42,15 +43,11 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 
-		OrbKopf kopfScript = player.GetComponent<OrbKopf>();
-
-		if (OrbKopf) {							//Kopf Script für Laser
-			kopfScript.enabled = true;
-		}
-		else if (!OrbKopf) {
-			kopfScript.enabled = false;
+		if ((Leben < 1) && alive) {
+			PlayerController control = player.GetComponent<PlayerController> ();
+			control.Death ();
+			alive = false;
 		}
 
 		if (Input.GetKeyDown (KeyCode.O) && (OrbCounter > 0)) {
