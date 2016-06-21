@@ -36,12 +36,16 @@ public class PlayerController : MonoBehaviour {
 	public float wallJumpControlDelay = 0.15f;
 	public float wallJumpDelayCalc = 0;
 
+	public GameObject gameManager;
+
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
 		audio = GetComponent<AudioSource>();
-	}
+		gameManager = GameObject.FindGameObjectWithTag("GameManager");
+
+		}
 
 	void FixedUpdate () {
 
@@ -60,6 +64,14 @@ public class PlayerController : MonoBehaviour {
 
 		if (grounded && doubleJumpEnabled)												//doubleJump reset
 			doubleJump = false;
+
+		GameManager manager = gameManager.GetComponent<GameManager>();
+
+		if (manager.OrbKopf == true) {
+			anim.SetBool("OrbKopf",true);
+
+		}
+
 	}
 
 	void Update () {

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class OrbKopf : MonoBehaviour {
 
-	Rigidbody2D rb;
 	public GameObject laserPrefab;
 	public Transform laserStart;
 	public LayerMask ToHit;
@@ -11,14 +10,14 @@ public class OrbKopf : MonoBehaviour {
 	public int laserMax = 1;	//Lasers at a Time
 	public int laserCount;
 	bool laserShootable;
-	Animator anim;
+	public GameObject kopfAnim;
+	Animator animKopf;
 	//public AudioClip bombThrow;
 	//public float throwVolume;
 
 	// Use this for initialization
 	void Start () {
-		anim = GetComponent<Animator>();
-		rb = GetComponent<Rigidbody2D>();
+		animKopf = kopfAnim.GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
@@ -32,7 +31,7 @@ public class OrbKopf : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.P) && laserShootable) {
-
+			animKopf.SetTrigger ("KopfLaser");
 			//AudioSource.PlayClipAtPoint (bombThrow, bombStart.position, throwVolume);
 			//anim.SetTrigger ("Throw");
 			Shoot();
@@ -52,6 +51,9 @@ public class OrbKopf : MonoBehaviour {
 		}
 		else if (!pc.facingRight) {
 			rblaser.velocity = new Vector2(-laserSpeed, 0);
+			Vector3 theScale = rblaser.transform.localScale;
+			theScale.x *= -1;
+			rblaser.transform.localScale = theScale;
 		}
 			
 		Physics2D.IgnoreCollision(rblaser.GetComponent<Collider2D>(),  GetComponent<Collider2D>());
