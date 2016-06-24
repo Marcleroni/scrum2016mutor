@@ -16,15 +16,21 @@ public class OrbKopfProjektil : MonoBehaviour {
 
 		if (col.gameObject.tag == "Terrain") {
 			//gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-			Destroy(gameObject);
-		}
-		else if (col.gameObject.tag == "LaserDestruction") {
-			Destroy(col.gameObject);
-			Destroy(gameObject);
-		}
-		else if (col.gameObject.tag == "EnemyFlying1") {
+			Destroy (gameObject);
+		} else if (col.gameObject.tag == "LaserDestruction") {
+			Destroy (col.gameObject);
+			Destroy (gameObject);
+		} else if (col.gameObject.tag == "EnemyFlying1") {
 			EnemyFlying FlyScript = col.gameObject.GetComponent<EnemyFlying> ();
 			FlyScript.Leben--;
+			Destroy (gameObject);
+		} else if (col.gameObject.tag == "EnemyThrowing1") {
+			EnemySkelett SkelettScript = col.gameObject.GetComponent<EnemySkelett> ();
+			SkelettScript.Leben--;
+			Destroy (gameObject);
+		} else if (col.gameObject.tag == "EnemySliding1") {
+			EnemySliding SlidingScript = col.gameObject.GetComponent<EnemySliding> ();
+			SlidingScript.Leben--;
 			Destroy (gameObject);
 		}
 

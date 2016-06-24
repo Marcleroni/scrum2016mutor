@@ -5,6 +5,7 @@ public class WallTrigger : MonoBehaviour {
 
 	SpriteRenderer rend;
 	public GameObject wallClimbBoss;
+	public GameObject cameraMain;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,11 @@ public class WallTrigger : MonoBehaviour {
 			rend.enabled = true;
 			gameObject.GetComponent<BoxCollider2D> ().enabled = true;
 			wallClimbBoss.GetComponent<BoxCollider2D> ().enabled = true;
+			AudioManager audiom = cameraMain.GetComponent<AudioManager> ();
+			if (audiom.audioS.clip != audiom.Boss1) {
+				audiom.audioS.clip = audiom.Boss1;
+				audiom.audioS.Play ();
+			}
 		}
 	}
 

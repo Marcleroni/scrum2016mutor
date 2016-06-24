@@ -22,7 +22,6 @@ public class Boss1Hit : MonoBehaviour {
 		if (col.gameObject.tag == "Player") {
 			GameManager manager = gameManager.GetComponent<GameManager>();
 			if (bossScript.canHit) {
-				Debug.Log ("PlayerHit");
 				manager.Leben--;
 				bossScript.canHit = false;
 			}
@@ -37,7 +36,6 @@ public class Boss1Hit : MonoBehaviour {
 		if (col.gameObject.tag == "Player") {
 			GameManager manager = gameManager.GetComponent<GameManager>();
 			if (bossScript.canHit) {
-				Debug.Log ("PlayerHit");
 				manager.Leben--;
 				bossScript.canHit = false;
 			}

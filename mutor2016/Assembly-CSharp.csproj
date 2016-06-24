@@ -45,14 +45,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Boss1.cs" />
      <Compile Include="Assets\Scripts\Boss1Hit.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\EnemyFlying.cs" />
+     <Compile Include="Assets\Scripts\EnemySkelett.cs" />
+     <Compile Include="Assets\Scripts\EnemySliding.cs" />
      <Compile Include="Assets\Scripts\FallReset.cs" />
+     <Compile Include="Assets\Scripts\FlyingStick.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\KrallenHit.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
+     <Compile Include="Assets\Scripts\OrbBeineAktiv.cs" />
+     <Compile Include="Assets\Scripts\OrbBeineProjektil.cs" />
      <Compile Include="Assets\Scripts\OrbFlügel.cs" />
      <Compile Include="Assets\Scripts\OrbFügelProjektil.cs" />
      <Compile Include="Assets\Scripts\OrbKopf.cs" />

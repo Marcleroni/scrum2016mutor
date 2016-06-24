@@ -31,7 +31,7 @@ public class Splitter : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D col) {
 		if (col.gameObject.tag == "Player") {
 			GameManager manager = gameManager.GetComponent<GameManager>();
-			manager.SplitterCounter = 1;
+			manager.SplitterCounter++;
 			Destroy(gameObject);
 		}
 	}

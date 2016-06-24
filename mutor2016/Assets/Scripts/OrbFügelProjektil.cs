@@ -22,6 +22,16 @@ public class OrbFügelProjektil : MonoBehaviour {
 			EnemyFlying FlyScript = col.gameObject.GetComponent<EnemyFlying> ();
 			FlyScript.Leben--;
 			Destroy (gameObject);
+		} 
+		else if (col.gameObject.tag == "EnemyThrowing1") {
+			EnemySkelett SkelettScript = col.gameObject.GetComponent<EnemySkelett> ();
+			SkelettScript.Leben--;
+			Destroy (gameObject);
+		}
+		else if (col.gameObject.tag == "EnemySliding1") {
+			EnemySliding SlidingScript = col.gameObject.GetComponent<EnemySliding> ();
+			SlidingScript.Leben--;
+			Destroy (gameObject);
 		}
 
 	}

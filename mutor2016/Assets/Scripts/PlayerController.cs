@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour {
 
 	public bool shootWings = false;
 
+	public bool shootBeine = false;
+
 	public KeyCode ActionKey = KeyCode.P; //Taste für alle Attacken
 
 	public GameObject gameManager;
@@ -226,6 +228,9 @@ public class PlayerController : MonoBehaviour {
 			} else if (manager.OrbFlügel == true) {
 				anim.SetBool ("AttackWings", true);
 				shootWings = true;
+			} else if ((manager.OrbBeine == true) && (anim.GetBool("Ground") == false) && (anim.GetBool("Fall") == false) ){
+				shootBeine = true;
+				anim.SetBool ("BeinAttacke", true);
 			}
 		}
 	

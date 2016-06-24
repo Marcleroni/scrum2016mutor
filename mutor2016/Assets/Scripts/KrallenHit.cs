@@ -35,6 +35,24 @@ public class KrallenHit : MonoBehaviour {
 			}
 		}
 
+		if (col.gameObject.tag == "EnemyThrowing1") {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+			PlayerController control = GetComponentInParent<PlayerController>();
+			EnemySkelett SkelettScript = col.gameObject.GetComponent<EnemySkelett> ();
+			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey)) {
+				SkelettScript.Leben--;
+			}
+		}
+
+		if (col.gameObject.tag == "EnemySliding1") {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+			PlayerController control = GetComponentInParent<PlayerController>();
+			EnemySliding SlidingScript = col.gameObject.GetComponent<EnemySliding> ();
+			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey)) {
+				SlidingScript.Leben--;
+			}
+		}
+
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
@@ -54,6 +72,24 @@ public class KrallenHit : MonoBehaviour {
 			EnemyFlying FlyScript = col.gameObject.GetComponent<EnemyFlying> ();
 			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey) && FlyScript.alive) {
 				FlyScript.Leben--;
+			}
+		}
+
+		if (col.gameObject.tag == "EnemyThrowing1") {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+			PlayerController control = GetComponentInParent<PlayerController>();
+			EnemySkelett SkelettScript = col.gameObject.GetComponent<EnemySkelett> ();
+			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey)) {
+				SkelettScript.Leben--;
+			}
+		}
+
+		if (col.gameObject.tag == "EnemySliding1") {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+			PlayerController control = GetComponentInParent<PlayerController>();
+			EnemySliding SlidingScript = col.gameObject.GetComponent<EnemySliding> ();
+			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey)) {
+				SlidingScript.Leben--;
 			}
 		}
 	}

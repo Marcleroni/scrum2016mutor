@@ -83,14 +83,6 @@ public class EnemyFlying : MonoBehaviour {
 		if (((col.gameObject.tag == "Terrain") || (col.gameObject.tag == "LaserDestruction")) && chargePuffer) {
 			rb.velocity = new Vector2 (0, 0);
 		}
-
-		if (col.gameObject.tag == "Projektil" && alive) {
-			if (Leben < 2) {
-				Death ();
-			} else if (Leben > 1) {
-				Leben--;
-			}
-		}
 		else if (col.gameObject.tag == "Player" && alive) {
 
 			rb.isKinematic = true;
