@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\Splitter.cs" />
      <Compile Include="Assets\Scripts\UIBossLeben.cs" />
      <Compile Include="Assets\Scripts\UILeben.cs" />
+     <Compile Include="Assets\Scripts\UIOrbs.cs" />
      <Compile Include="Assets\Scripts\UISPlitter.cs" />
      <Compile Include="Assets\Scripts\WallTrigger.cs" />
  <Reference Include="UnityEngine.UI">
