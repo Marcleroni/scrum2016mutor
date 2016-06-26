@@ -4,18 +4,18 @@ using UnityEngine.UI;
 
 public class UILeben : MonoBehaviour {
 
+	Animator anim;
 	public GameObject gameManager;
-	Text LebenUI;
 
 	// Use this for initialization
 	void Start () {
 		gameManager = GameObject.FindGameObjectWithTag("GameManager");
-		LebenUI = gameObject.GetComponent<Text> ();
+		anim = GetComponent<Animator> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
 		GameManager manager = gameManager.GetComponent<GameManager>();
-		LebenUI.text = ("Leben: " + manager.Leben.ToString());
+		anim.SetInteger ("Leben", manager.Leben);
 	}
 }

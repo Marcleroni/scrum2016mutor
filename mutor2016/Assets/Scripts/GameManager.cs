@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject player;
 	public static GameManager instance = null;
 
-	public int Leben = 8;
+	public int Leben = 5;
 	public bool alive = true;
 
 	public int SplitterCounter = 0;
