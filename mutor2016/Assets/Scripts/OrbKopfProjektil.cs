@@ -3,6 +3,8 @@ using System.Collections;
 
 public class OrbKopfProjektil : MonoBehaviour {
 
+	Animator target;
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -18,7 +20,8 @@ public class OrbKopfProjektil : MonoBehaviour {
 			//gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
 			Destroy (gameObject);
 		} else if (col.gameObject.tag == "LaserDestruction") {
-			Destroy (col.gameObject);
+			target = col.gameObject.GetComponent<Animator> ();
+			target.SetBool ("Burned", true);
 			Destroy (gameObject);
 		} else if (col.gameObject.tag == "EnemyFlying1") {
 			EnemyFlying FlyScript = col.gameObject.GetComponent<EnemyFlying> ();
