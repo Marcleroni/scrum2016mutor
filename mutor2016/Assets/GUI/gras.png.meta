@@ -1,9 +1,10 @@
 fileFormatVersion: 2
 guid: 282d7344beac61b4cbf731d2f6125c30
-timeCreated: 1466768096
+timeCreated: 1467127996
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: gras_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +31,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +39,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +50,45 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: gras_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 310
+        width: 1913
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -433.5, y: -34}
+        - {x: -429.5, y: -35}
+        - {x: 517.5, y: -35}
+        - {x: 529.5, y: -34}
+        - {x: 532.5, y: -35}
+        - {x: 956.5, y: -35}
+        - {x: 956.5, y: 33}
+        - {x: 949.5, y: 35}
+        - {x: 903.5, y: 35}
+        - {x: 888.5, y: 34}
+        - {x: 862.5, y: 35}
+        - {x: 363.5, y: 35}
+        - {x: 317.5, y: 34}
+        - {x: 310.5, y: 35}
+        - {x: 203.5, y: 35}
+        - {x: 141.5, y: 32}
+        - {x: 127.5, y: 35}
+        - {x: -573.5, y: 35}
+        - {x: -633.5, y: 34}
+        - {x: -644.5, y: 35}
+        - {x: -755.5, y: 35}
+        - {x: -814.5, y: 33}
+        - {x: -832.5, y: 35}
+        - {x: -917.5, y: 35}
+        - {x: -956.5, y: 33}
+        - {x: -956.5, y: -35}
+        - {x: -437.5, y: -35}
     outline: []
   spritePackingTag: 
   userData: 
