@@ -1,29 +1,29 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\OrbKopfProjektil.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemySliding.cs">
     <Files>
-      <File FileName="Assets\Scripts\OrbKopfProjektil.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AudioManager.cs" Line="13" Column="1" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UILeben.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\EnemySliding.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="328" Column="5" />
+      <File FileName="Assets\Scripts\OrbBeineAktiv.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OrbKopfProjektil.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AudioManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UILeben.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\EnemySkelett.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\FlyingStick.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\KrallenHit.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\OrbFügelProjektil.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OrbBeineAktiv.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\OrbBeineProjektil.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UIBossLeben.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\OrbFlügel.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\OrbKopf.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Boss1.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnemyFlying.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Boss1Hit.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\WallTrigger.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Splitter.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\DoorScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UIOrbs.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UISPlitter.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

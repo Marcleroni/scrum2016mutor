@@ -16,6 +16,6 @@ public class UISPlitter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		GameManager manager = gameManager.GetComponent<GameManager>();
-		LebenUI.text = ("Splitter: " + manager.SplitterCounter.ToString());
+		LebenUI.text = (manager.SplitterCounter.ToString());
 	}
 }

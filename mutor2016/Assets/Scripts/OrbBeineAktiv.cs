@@ -7,11 +7,16 @@ public class OrbBeineAktiv : MonoBehaviour {
 	public Transform Spawn1;
 	public Transform Spawn2;
 	public GameObject prefab1;
+
+	public AudioClip beine;
+	public float beineVolume;
+	AudioSource audio;
 	//public GameObject prefab2;
 
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator>();
+		audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -29,6 +34,7 @@ public class OrbBeineAktiv : MonoBehaviour {
 
 	void Shoot () {
 
+		audio.PlayOneShot(beine,beineVolume);
 		PlayerController pc = gameObject.GetComponent<PlayerController>();
 
 		if (pc.facingRight) {

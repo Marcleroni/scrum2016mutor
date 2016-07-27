@@ -66,8 +66,15 @@
      <Compile Include="Assets\Scripts\OrbKopfItem.cs" />
      <Compile Include="Assets\Scripts\OrbKopfProjektil.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\PortalLevel1.cs" />
+     <Compile Include="Assets\Scripts\PortalLevel2.cs" />
+     <Compile Include="Assets\Scripts\PortalLevel3.cs" />
      <Compile Include="Assets\Scripts\SideScrollMenu.cs" />
      <Compile Include="Assets\Scripts\SideScrollMenu2.cs" />
+     <Compile Include="Assets\Scripts\SpawnManagerFrom1.cs" />
+     <Compile Include="Assets\Scripts\SpawnManagerFrom2.cs" />
+     <Compile Include="Assets\Scripts\SpawnManagerFrom3.cs" />
+     <Compile Include="Assets\Scripts\SpawnStart.cs" />
      <Compile Include="Assets\Scripts\Splitter.cs" />
      <Compile Include="Assets\Scripts\UIBossLeben.cs" />
      <Compile Include="Assets\Scripts\UILeben.cs" />

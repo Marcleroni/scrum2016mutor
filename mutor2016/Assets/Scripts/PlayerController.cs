@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -30,6 +31,16 @@ public class PlayerController : MonoBehaviour {
 
 	public AudioClip jump;
 	public float jumpVolume;
+	public AudioClip walk;
+	public float walkVolume;
+	public AudioClip death;
+	public float deathVolume;
+	public AudioClip laser;
+	public float laserVolume;
+	public AudioClip wings;
+	public float wingsVolume;
+	public AudioClip claw;
+	public float clawVolume;
 	AudioSource audio;
 
 	public bool wallJumpEnabled = false;		//wallJump ON/OFF
@@ -156,9 +167,7 @@ public class PlayerController : MonoBehaviour {
 
 		if ((grounded || (!doubleJump)) && Input.GetButtonDown ("Jump") && manager.alive) {	//doubleJump or Parameter
 
-			audio.time = 0.5f;
-			audio.Play();
-			//AudioSource.PlayClipAtPoint(jump,this.GetComponent<Transform>().position, jumpVolume);
+			audio.PlayOneShot(jump,jumpVolume);
 
 			anim.SetBool ("Ground", false);
 			rb.velocity = new Vector2 (rb.velocity.x, 0);
@@ -223,11 +232,14 @@ public class PlayerController : MonoBehaviour {
 
 			if (manager.OrbKopf == true) {
 				shootLaser = true;
+				audio.PlayOneShot(laser,laserVolume);
 			} else if (manager.OrbKrallen == true) {
 				anim.SetBool ("AttackKrallen", true);
+				audio.PlayOneShot(claw,clawVolume);
 			} else if (manager.OrbFlügel == true) {
 				anim.SetBool ("AttackWings", true);
 				shootWings = true;
+				audio.PlayOneShot(wings,wingsVolume);
 			} else if ((manager.OrbBeine == true) && (anim.GetBool("Ground") == false) && (anim.GetBool("Fall") == false) ){
 				shootBeine = true;
 				anim.SetBool ("BeinAttacke", true);
@@ -253,8 +265,15 @@ public class PlayerController : MonoBehaviour {
 		anim.SetBool ("Death", true);
 		anim.SetTrigger ("DeathTrigger");
 		rb.constraints = RigidbodyConstraints2D.FreezeAll;
+		audio.PlayOneShot(death,deathVolume);
 	}
 
+//-------------------------------------------------- Death ----------------------------------------------------------------------
+
+	public void Respawn () {
+		Scene scene = SceneManager.GetActiveScene();
+		SceneManager.LoadScene(scene.name);
+	}
 //-------------------------------------------------- Collision Enter --------------------------------------------------------------------
 	void OnCollisionEnter2D(Collision2D coll) {
 
@@ -307,5 +326,12 @@ public class PlayerController : MonoBehaviour {
 		transform.localScale = theScale;
 
 	}
-		
+
+	public void walkSound () {
+		audio.PlayOneShot(walk,walkVolume);
+	}
+
+	public void beineAttack () {
+		//audio.PlayOneShot(beine,beineVolume);
+	}
 }

@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour {
 
 	public bool OrbFlügel = false;
 	public bool GotOrbFlügel = false;
+
+	public int fromLevel = 0;
 		
 	void Awake () {
 
