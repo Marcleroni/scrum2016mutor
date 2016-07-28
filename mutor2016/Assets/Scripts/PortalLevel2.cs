@@ -19,7 +19,7 @@ public class PortalLevel2 : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D col) {
 
 		if (col.gameObject.tag == "Player") {
-			if (Input.GetKeyDown (KeyCode.Return)) {
+			if (Input.GetKeyDown (KeyCode.W)) {
 				GameManager manager = gameManager.GetComponent<GameManager>();
 				manager.fromLevel = SceneManager.GetActiveScene ().buildIndex;
 				SceneManager.LoadScene ("Level2");

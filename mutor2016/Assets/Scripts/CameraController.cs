@@ -24,11 +24,11 @@ public class CameraController : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		if (Input.GetAxis ("Vertical") > 0) {		//CAM Move Up On W Press
-			camFollow = false;
-		} else {
-			camFollow = true;
-		}
+	//	if (Input.GetAxis ("Vertical") > 0) {		//CAM Move Up On W Press
+	//		camFollow = false;
+	//	} else {
+	//		camFollow = true;
+	//	}
 
 		if (camFollow) {
 			saver = transform.position.y;
