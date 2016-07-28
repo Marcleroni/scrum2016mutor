@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 	public float groundRadius = 0.02f;
 	public LayerMask whatIsGround;
 	public float jumpForce = 200;
+	public float doublejumpForce = 200;
 
 	bool doubleJump = true;						//doubleJump Variable
 	public bool doubleJumpEnabled = false;		//doubleJump ON/OFF
@@ -165,13 +166,23 @@ public class PlayerController : MonoBehaviour {
 
 		GameManager manager = gameManager.GetComponent<GameManager>();
 
-		if ((grounded || (!doubleJump)) && Input.GetButtonDown ("Jump") && manager.alive) {	//doubleJump or Parameter
+		if ((grounded) && Input.GetButtonDown ("Jump") && manager.alive) {	//Jump
 
 			audio.PlayOneShot(jump,jumpVolume);
 
 			anim.SetBool ("Ground", false);
 			rb.velocity = new Vector2 (rb.velocity.x, 0);
 			rb.AddForce(new Vector2 (0, jumpForce));
+
+		}
+
+		if ((!doubleJump && !grounded) && Input.GetButtonDown ("Jump") && manager.alive) {	//doubleJump
+
+			audio.PlayOneShot(jump,jumpVolume);
+
+			anim.SetBool ("Ground", false);
+			rb.velocity = new Vector2 (rb.velocity.x, 0);
+			rb.AddForce(new Vector2 (0, doublejumpForce));
 
 			if (!doubleJump && !grounded)	//doubleJump
 				doubleJump = true;			//doubleJump
@@ -202,7 +213,7 @@ public class PlayerController : MonoBehaviour {
 
 		onWall = Physics2D.OverlapCircle(wallCheck.position, wallRadius, whatIsWall);	//Wall detection
 
-		if (onWall && !grounded && Input.GetButtonDown ("Jump") && wallJumpEnabled && manager.alive && !(Input.GetButton("Horizontal"))) {					// WallJump
+		if (onWall && !grounded && Input.GetButtonDown ("Jump") && wallJumpEnabled && manager.alive) {					// WallJump
 			wallJumpDelayCalc -= Time.deltaTime;
 			rb.velocity = new Vector2 (0, 0);
 			rb.gravityScale = 1f;
