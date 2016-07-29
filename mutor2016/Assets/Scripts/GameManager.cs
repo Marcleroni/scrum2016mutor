@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class GameManager : MonoBehaviour {
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour {
 	public bool GotOrbFlügel = false;
 
 	public int fromLevel = 0;
+
+	public List<string> Items = new List<string>();
 		
 	void Awake () {
 

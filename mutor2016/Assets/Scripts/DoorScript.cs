@@ -33,7 +33,7 @@ public class DoorScript : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D col) {
 
 
-		if (col.gameObject.tag == "Player") {
+		if ((col.gameObject.tag == "Player") && (anim.GetBool("On") == false)) {
 			time = setTime;
 			countdown = true;
 			anim.SetBool ("On", true);

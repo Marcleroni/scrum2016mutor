@@ -17,6 +17,11 @@ public class Splitter : MonoBehaviour {
 		gameManager = GameObject.FindGameObjectWithTag("GameManager");
 		Bouncing = gameObject;
 		start = gameObject.GetComponent<Transform> ();
+
+		GameManager manager = gameManager.GetComponent<GameManager>();
+		if (manager.Items.Contains(gameObject.tag)) {
+			Destroy(gameObject);
+		}
 	}
 
 	// Update is called once per frame
@@ -33,6 +38,7 @@ public class Splitter : MonoBehaviour {
 			GameManager manager = gameManager.GetComponent<GameManager>();
 			manager.SplitterCounter++;
 			Destroy(gameObject);
+			manager.Items.Add (gameObject.tag);
 		}
 	}
 }
