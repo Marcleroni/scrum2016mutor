@@ -9,7 +9,7 @@ public class Boss1 : MonoBehaviour {
 	public bool facingRight = true;
 	public float move;
 
-	public int BossLeben = 10;
+	public int BossLeben = 5;
 	bool alive = true;
 
 	public Transform target;				//Angriffsziel = Player
@@ -40,12 +40,19 @@ public class Boss1 : MonoBehaviour {
 	public GameObject gameManager;
 	public GameObject Player;
 
+	public GameObject splitter;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
 		gameManager = GameObject.FindGameObjectWithTag("GameManager");
 		KnockbackTime = SetKnockbackTime;		//Knockback aus Inspektor laden
+
+		GameManager manager = gameManager.GetComponent<GameManager>();
+		if (manager.Bosse.Contains(gameObject.tag)) {
+			Destroy(gameObject);
+		}
 	}
 	
 	// Update is called once per frame
@@ -162,6 +169,9 @@ public class Boss1 : MonoBehaviour {
 	}
 //--------------------------------------------------Sterbe Sequenz-----------------------------------------------------------
 	public void Death () {
+		GameObject reward = (GameObject)Instantiate (splitter, transform.position, transform.rotation);
+		GameManager manager = gameManager.GetComponent<GameManager> ();
+		manager.Bosse.Add (gameObject.tag);
 		Destroy (gameObject);
 	}
 
@@ -177,7 +187,7 @@ public class Boss1 : MonoBehaviour {
 			if ((chargeDirection < 0) && CanGetKnockedBack) {										//Check ob Spieler beim Charge getroffen wurde (Charge nach links)
 				PlayerController control = Player.GetComponent<PlayerController>();
 				control.enabled = false;
-				col.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (-10, 3);			//Knockbackkurve nach links
+				col.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (-7, 3);			//Knockbackkurve nach links
 				KnockBackReset = true;
 
 				GameManager manager = gameManager.GetComponent<GameManager>();						//Leben abziehen bei Charge
@@ -186,7 +196,7 @@ public class Boss1 : MonoBehaviour {
 			} else if ((chargeDirection > 0) && CanGetKnockedBack) {								//Check ob Spieler beim Charge getroffen wurde (Charge nach rechts)
 				PlayerController control = Player.GetComponent<PlayerController>();
 				control.enabled = false;
-				col.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (10, 3);			//Knockbackkurve nach rechts
+				col.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (7, 3);			//Knockbackkurve nach rechts
 				KnockBackReset = true;
 
 				GameManager manager = gameManager.GetComponent<GameManager>();						//Leben abziehen bei Charge

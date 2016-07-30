@@ -26,6 +26,16 @@ public class KrallenHit : MonoBehaviour {
 			}
 		}
 
+		if (col.gameObject.tag == "Boss2") {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+			PlayerController control = GetComponentInParent<PlayerController>();
+			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey)) {
+				Debug.Log ("BossHit");
+				Boss2 BossScript = col.gameObject.GetComponent<Boss2> ();
+				BossScript.BossLeben--;
+			}
+		}
+
 		if (col.gameObject.tag == "EnemyFlying1") {
 			GameManager manager = gameManager.GetComponent<GameManager>();
 			PlayerController control = GetComponentInParent<PlayerController>();
@@ -62,6 +72,16 @@ public class KrallenHit : MonoBehaviour {
 			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey)) {
 				Debug.Log ("BossHit");
 				Boss1 BossScript = col.gameObject.GetComponent<Boss1> ();
+				BossScript.BossLeben--;
+			}
+		}
+
+		if (col.gameObject.tag == "Boss2") {
+			GameManager manager = gameManager.GetComponent<GameManager>();
+			PlayerController control = GetComponentInParent<PlayerController>();
+			if (manager.OrbKrallen && Input.GetKeyDown (control.ActionKey)) {
+				Debug.Log ("BossHit");
+				Boss2 BossScript = col.gameObject.GetComponent<Boss2> ();
 				BossScript.BossLeben--;
 			}
 		}

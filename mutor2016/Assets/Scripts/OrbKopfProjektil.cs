@@ -35,7 +35,15 @@ public class OrbKopfProjektil : MonoBehaviour {
 			EnemySliding SlidingScript = col.gameObject.GetComponent<EnemySliding> ();
 			SlidingScript.Leben--;
 			Destroy (gameObject);
-		}
+		} else if (col.gameObject.tag == "Boss") {
+			Boss1 BossScript = col.gameObject.GetComponent<Boss1> ();
+			BossScript.BossLeben--;
+			Destroy (gameObject);
+		} else if (col.gameObject.tag == "Boss2") {
+			Boss2 BossScript = col.gameObject.GetComponent<Boss2> ();
+			BossScript.BossLeben--;
+			Destroy (gameObject);
+		} 
 
 	}
 

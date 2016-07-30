@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour {
 	public int fromLevel = 0;
 
 	public List<string> Items = new List<string>();
+
+	public List<string> Bosse = new List<string>();
 		
 	void Awake () {
 
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		player = GameObject.Find("Player");
 		if ((Leben < 1) && alive) {
 			PlayerController control = player.GetComponent<PlayerController> ();
 			control.Death ();

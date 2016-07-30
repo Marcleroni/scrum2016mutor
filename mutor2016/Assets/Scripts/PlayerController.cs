@@ -76,6 +76,10 @@ public class PlayerController : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		audio = GetComponent<AudioSource>();
 		gameManager = GameObject.FindGameObjectWithTag("GameManager");
+
+		GameManager manager = gameManager.GetComponent<GameManager>();
+		manager.Leben = 5;
+		manager.alive = true;
 		}
 
 	void FixedUpdate () {
