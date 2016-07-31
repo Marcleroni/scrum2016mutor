@@ -20,10 +20,16 @@ public class Boss2 : MonoBehaviour {
 
 	public GameObject splitter;
 
+	AudioSource audio;
+
+	public AudioClip wurf;
+	public float wurfVolume;
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator>();
 		gameManager = GameObject.FindGameObjectWithTag("GameManager");
+		audio = GetComponent<AudioSource> ();
 
 		GameManager manager = gameManager.GetComponent<GameManager>();
 		if (manager.Bosse.Contains(gameObject.tag)) {
@@ -70,7 +76,7 @@ public class Boss2 : MonoBehaviour {
 	}
 
 	public void Shoot () {
-
+		audio.PlayOneShot(wurf,wurfVolume);
 		GameObject mumpel = (GameObject)Instantiate (ball, spawn.position, spawn.rotation);
 
 	}
@@ -88,6 +94,8 @@ public class Boss2 : MonoBehaviour {
 		GameObject reward = (GameObject)Instantiate (splitter, spawn.position, spawn.rotation);
 		GameManager manager = gameManager.GetComponent<GameManager> ();
 		manager.Bosse.Add (gameObject.tag);
+		manager.Leben = 5;
+		manager.lebenTotal++;
 		Destroy (gameObject);
 	}
 }

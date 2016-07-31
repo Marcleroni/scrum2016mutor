@@ -22,6 +22,7 @@ public class OrbKopfItem : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D col) {
 		if (col.gameObject.tag == "Player") {
 			GameManager manager = gameManager.GetComponent<GameManager>();
+			manager.playOrb ();
 
 			if (gameObject.tag == "KopfOrb") {
 				manager.Items.Add (gameObject.tag);

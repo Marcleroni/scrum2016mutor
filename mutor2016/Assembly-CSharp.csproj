@@ -54,8 +54,10 @@
      <Compile Include="Assets\Scripts\Boss2.cs" />
      <Compile Include="Assets\Scripts\Boss2Projektil.cs" />
      <Compile Include="Assets\Scripts\Boss3.cs" />
+     <Compile Include="Assets\Scripts\BossProjektil.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\DoorScript.cs" />
+     <Compile Include="Assets\Scripts\Endboss.cs" />
      <Compile Include="Assets\Scripts\EndbossPortal.cs" />
      <Compile Include="Assets\Scripts\EnemyFlying.cs" />
      <Compile Include="Assets\Scripts\EnemySkelett.cs" />
@@ -64,6 +66,7 @@
      <Compile Include="Assets\Scripts\FlyingStick.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\KrallenHit.cs" />
+     <Compile Include="Assets\Scripts\LifeTotalUi.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\OrbBeineAktiv.cs" />
      <Compile Include="Assets\Scripts\OrbBeineProjektil.cs" />
@@ -85,6 +88,7 @@
      <Compile Include="Assets\Scripts\SpawnStart.cs" />
      <Compile Include="Assets\Scripts\Splitter.cs" />
      <Compile Include="Assets\Scripts\SplitterPopup.cs" />
+     <Compile Include="Assets\Scripts\StartButtonNewBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\UIBossLeben.cs" />
      <Compile Include="Assets\Scripts\UILeben.cs" />
      <Compile Include="Assets\Scripts\UIOrbs.cs" />

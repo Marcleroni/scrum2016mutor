@@ -11,9 +11,15 @@ public class EnemySkelett : MonoBehaviour {
 	public float throwDist = 5f;
 	public int Leben = 1;
 
+	AudioSource audio;
+
+	public AudioClip skelettwurf;
+	public float skelettVolume;
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator>();
+		audio = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -34,6 +40,7 @@ public class EnemySkelett : MonoBehaviour {
 
 	public void Shoot () {
 
+		audio.PlayOneShot(skelettwurf,skelettVolume);
 		PlayerController pc = gameObject.GetComponent<PlayerController> ();
 
 		GameObject stick = (GameObject)Instantiate (boneStick, spawn.position, spawn.rotation);

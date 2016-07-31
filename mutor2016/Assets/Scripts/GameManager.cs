@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
 	public GameObject player;
 	public static GameManager instance = null;
+
+	public int lebenTotal = 3;
 
 	public int Leben = 5;
 	public bool alive = true;
@@ -37,8 +39,17 @@ public class GameManager : MonoBehaviour {
 	public List<string> Bosse = new List<string>();
 
 	public bool splitterPopup = false;
+
+	AudioSource audio;
+
+	public AudioClip orbSound;
+	public float orbVolume;
+	public AudioClip splitterSound;
+	public float splitterVolume;
 		
 	void Awake () {
+
+		audio = GetComponent<AudioSource> ();
 
 		player = GameObject.Find("Player");
 
@@ -70,6 +81,26 @@ public class GameManager : MonoBehaviour {
 		} else if (Input.GetKeyDown (OrbwechselLinks) && (OrbCounter > 0)) {
 			OrbCounter++;
 		} 
+
+		if (lebenTotal < 1) {
+			lebenTotal = 3;
+			SplitterCounter = 0;
+			Items.Clear();
+			Bosse.Clear();
+			OrbCounter = 0;
+			OrbKopf = false;
+			GotOrbKopf = false;
+
+			OrbBeine = false;
+			GotOrbBeine = false;
+
+			OrbKrallen = false;
+			GotOrbKrallen = false;
+
+			OrbFlügel = false;
+			GotOrbFlügel = false;
+			SceneManager.LoadScene ("StartMenu");
+		}
 
 //---------------------------- Orb-Controller ------------------------------
 
@@ -123,5 +154,14 @@ public class GameManager : MonoBehaviour {
 
 //---------------------------- Orb-Controller ------------------------------
 
+	}
+
+	public void playOrb () {
+		audio.PlayOneShot(orbSound,orbVolume);
+	}
+
+
+	public void playSplitter () {
+		audio.PlayOneShot(splitterSound,splitterVolume);
 	}
 }

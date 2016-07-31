@@ -10,7 +10,7 @@ public class PopupBeineNewBehaviourScript : MonoBehaviour {
 	void Start () {
 		gameManager = GameObject.FindGameObjectWithTag("GameManager");
 		GameManager manager = gameManager.GetComponent<GameManager>();
-		if (manager.Bosse.Contains(gameObject.tag)) {
+		if (manager.Items.Contains(gameObject.tag)) {
 			Destroy(gameObject);
 		}
 	}

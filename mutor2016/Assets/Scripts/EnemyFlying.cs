@@ -23,6 +23,8 @@ public class EnemyFlying : MonoBehaviour {
 	public GameObject gameManager;
 	public GameObject Player;
 
+	public float rotationValue = 146;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -123,9 +125,9 @@ public class EnemyFlying : MonoBehaviour {
 		alive = false;
 		rb.velocity = new Vector2 (0, 0);
 		if (!facingRight)									
-			transform.Rotate (0,-180,146);
+			transform.Rotate (0,-180,rotationValue);
 		else if (facingRight)
-			transform.Rotate (0,-180,-146);
+			transform.Rotate (0,-180,-rotationValue);
 		gameObject.GetComponent<PolygonCollider2D> ().isTrigger = true;
 	}
 

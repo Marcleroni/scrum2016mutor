@@ -172,6 +172,8 @@ public class Boss1 : MonoBehaviour {
 		GameObject reward = (GameObject)Instantiate (splitter, transform.position, transform.rotation);
 		GameManager manager = gameManager.GetComponent<GameManager> ();
 		manager.Bosse.Add (gameObject.tag);
+		manager.Leben = 5;
+		manager.lebenTotal++;
 		Destroy (gameObject);
 	}
 

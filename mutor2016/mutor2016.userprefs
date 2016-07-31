@@ -2,36 +2,44 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Boss3.cs">
     <Files>
-      <File FileName="Assets\Scripts\Boss3.cs" Line="70" Column="4" />
-      <File FileName="Assets\Scripts\Boss2Projektil.cs" Line="40" Column="4" />
-      <File FileName="Assets\Scripts\FlyingStick.cs" Line="33" Column="25" />
-      <File FileName="Assets\Scripts\Boss2.cs" Line="38" Column="71" />
-      <File FileName="Assets\Scripts\EnemySkelett.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Boss1.cs" Line="76" Column="1" />
+      <File FileName="Assets\Scripts\OrbBeineAktiv.cs" Line="50" Column="1" />
+      <File FileName="Assets\Scripts\Boss3.cs" Line="129" Column="24" />
+      <File FileName="Assets\Scripts\Boss2.cs" Line="98" Column="24" />
+      <File FileName="Assets\Scripts\Boss2Projektil.cs" Line="46" Column="3" />
+      <File FileName="Assets\Scripts\FlyingStick.cs" Line="15" Column="2" />
+      <File FileName="Assets\Scripts\EnemySkelett.cs" Line="43" Column="3" />
+      <File FileName="Assets\Scripts\Boss1.cs" Line="175" Column="3" />
       <File FileName="Assets\Scripts\AudioManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\DoorScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="300" Column="3" />
-      <File FileName="Assets\Scripts\EnemySliding.cs" Line="50" Column="4" />
-      <File FileName="Assets\Scripts\OrbBeineAktiv.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OrbKopfProjektil.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="32" Column="2" />
+      <File FileName="Assets\Scripts\EnemySliding.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OrbKopfProjektil.cs" Line="47" Column="25" />
       <File FileName="Assets\Scripts\UILeben.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\KrallenHit.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OrbFügelProjektil.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\KrallenHit.cs" Line="19" Column="38" />
+      <File FileName="Assets\Scripts\OrbFügelProjektil.cs" Line="46" Column="4" />
       <File FileName="Assets\Scripts\OrbBeineProjektil.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UIBossLeben.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OrbFlügel.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OrbKopf.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Boss1Hit.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Splitter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="102" Column="41" />
+      <File FileName="Assets\Scripts\Splitter.cs" Line="39" Column="28" />
       <File FileName="Assets\Scripts\UIOrbs.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UISPlitter.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CameraController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OrbKopfItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OrbKopfItem.cs" Line="25" Column="23" />
       <File FileName="Assets\Scripts\SpawnManagerFrom1.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\WallTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AudioTriggerLevel2.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AudioTriggerLevel1.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PopupBeineNewBehaviourScript.cs" Line="11" Column="46" />
+      <File FileName="Assets\Scripts\SplitterPopup.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OrbFlügel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OrbKopf.cs" Line="64" Column="3" />
+      <File FileName="Assets\Scripts\BossProjektil.cs" Line="28" Column="30" />
+      <File FileName="Assets\Scripts\EnemyFlying.cs" Line="130" Column="43" />
+      <File FileName="Assets\Scripts\StartButtonNewBehaviourScript.cs" Line="30" Column="34" />
+      <File FileName="Assets\Scripts\PortalLevel3.cs" Line="3" Column="1" />
+      <File FileName="Assets\Scripts\FallReset.cs" Line="14" Column="36" />
+      <File FileName="Assets\Scripts\UISPlitter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LifeTotalUi.cs" Line="3" Column="1" />
+      <File FileName="Assets\Scripts\PortalLevel1.cs" Line="7" Column="2" />
+      <File FileName="Assets\Scripts\EndbossPortal.cs" Line="23" Column="5" />
+      <File FileName="Assets\Scripts\Endboss.cs" Line="63" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

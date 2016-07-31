@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip claw;
 	public float clawVolume;
 	AudioSource audio;
+	public AudioClip slide;
+	public float slideVolume;
 
 	public bool wallJumpEnabled = false;		//wallJump ON/OFF
 	public bool wallSlideEnabled = false;
@@ -289,6 +291,9 @@ public class PlayerController : MonoBehaviour {
 //-------------------------------------------------- Death ----------------------------------------------------------------------
 
 	public void Respawn () {
+
+		GameManager manager = gameManager.GetComponent<GameManager>();
+		manager.lebenTotal--;
 		Scene scene = SceneManager.GetActiveScene();
 		SceneManager.LoadScene(scene.name);
 	}
@@ -300,6 +305,7 @@ public class PlayerController : MonoBehaviour {
 			anim.SetBool ("Climb", true);
 			Debug.Log ("TestEnter");
 		}
+			
 	}
 
 //-------------------------------------------------- Collision Stay --------------------------------------------------------------------
@@ -312,11 +318,13 @@ public class PlayerController : MonoBehaviour {
 				rb.velocity = new Vector2 (rb.velocity.x, 0);
 				rb.gravityScale = 0.3f;
 				Debug.Log ("TestSlide");
+				audio.PlayOneShot(slide,slideVolume);
 			}
 			else if (!facingRight && (wallJumpDelayCalc == wallJumpControlDelay) && (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") < 0) && onWall) {	//Wall Slide Left
 				rb.velocity = new Vector2 (rb.velocity.x, 0);
 				rb.gravityScale = 0.3f;
 				Debug.Log ("TestSlide");
+				audio.PlayOneShot(slide,slideVolume);
 			}
 			else {
 				rb.gravityScale = 1f;
@@ -352,4 +360,5 @@ public class PlayerController : MonoBehaviour {
 	public void beineAttack () {
 		//audio.PlayOneShot(beine,beineVolume);
 	}
+		
 }

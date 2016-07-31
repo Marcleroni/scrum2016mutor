@@ -45,7 +45,11 @@ public class OrbKopfProjektil : MonoBehaviour {
 			Destroy (gameObject);
 		} else if (col.gameObject.tag == "Boss3") {
 			Destroy (gameObject);
-		} 
+		} else if (col.gameObject.tag == "Endboss") {
+			Endboss BossScript = col.gameObject.GetComponent<Endboss> ();
+			BossScript.BossLeben--;
+			Destroy (gameObject);
+		}
 
 	}
 
