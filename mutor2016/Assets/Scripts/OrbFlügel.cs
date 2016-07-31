@@ -7,20 +7,28 @@ public class OrbFlügel : MonoBehaviour {
 	public Transform start;
 	public LayerMask toHit;
 	public float speed;
-	public int projektilMax = 1;
-	public int projektilCount;
-	bool projektilShootable;
+	public bool projektilShootable;
+
+	public float wingsCd = 5;
+	public float wingsCount;
+	public bool startCount = false;
+
+	AudioSource audio;
+
+	public AudioClip wings;
+	public float wingsVolume;
 
 	// Use this for initialization
 	void Start () {
-	
+		audio = GetComponent<AudioSource> ();
+		wingsCount = wingsCd;
 	}
 	
 	void Update () {
 
 		PlayerController pc = GetComponent<PlayerController>();
 
-		if (projektilCount < projektilMax) {
+		if (wingsCount == wingsCd) {
 			projektilShootable = true;
 		}
 		else {
@@ -31,11 +39,24 @@ public class OrbFlügel : MonoBehaviour {
 			//AudioSource.PlayClipAtPoint (bombThrow, bombStart.position, throwVolume);
 			//anim.SetTrigger ("Throw");
 			Shoot();
+			startCount = true;
 		}
+
+		if (startCount) {
+			wingsCount -= Time.deltaTime;
+		}
+
+		if (wingsCount < 0) {
+			startCount = false;
+			wingsCount = wingsCd;
+		}
+
 
 	}
 
 	void Shoot () {
+
+		audio.PlayOneShot(wings,wingsVolume);
 
 		PlayerController pc = gameObject.GetComponent<PlayerController>();
 
@@ -54,7 +75,6 @@ public class OrbFlügel : MonoBehaviour {
 
 		Physics2D.IgnoreCollision(rbWind.GetComponent<Collider2D>(),  GetComponent<Collider2D>());
 
-		projektilCount++;		//Counter für Projektile
 		pc.shootWings = false;
 	}
 }

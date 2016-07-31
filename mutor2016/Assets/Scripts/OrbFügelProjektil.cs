@@ -37,8 +37,18 @@ public class OrbFügelProjektil : MonoBehaviour {
 			Boss2 BossScript = col.gameObject.GetComponent<Boss2> ();
 			BossScript.BossLeben--;
 			Destroy (gameObject);
+		} else if (col.gameObject.tag == "Boss3") {
+			Destroy (gameObject);
 		} 
 
+	}
+
+	void OnTriggerEnter2D (Collider2D col) {
+		if (col.gameObject.tag == "Boss3") {
+			Boss3 BossScript = col.gameObject.GetComponent<Boss3> ();
+			BossScript.BossLeben--;
+			Destroy (gameObject);
+		}
 	}
 
 	public void DestroyOnRange () {

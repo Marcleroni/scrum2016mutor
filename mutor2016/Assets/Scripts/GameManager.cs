@@ -27,11 +27,16 @@ public class GameManager : MonoBehaviour {
 	public bool OrbFlügel = false;
 	public bool GotOrbFlügel = false;
 
+	public KeyCode OrbwechselRechts = KeyCode.P;
+	public KeyCode OrbwechselLinks = KeyCode.I;
+
 	public int fromLevel = 0;
 
 	public List<string> Items = new List<string>();
 
 	public List<string> Bosse = new List<string>();
+
+	public bool splitterPopup = false;
 		
 	void Awake () {
 
@@ -57,9 +62,14 @@ public class GameManager : MonoBehaviour {
 			alive = false;
 		}
 
-		if (Input.GetKeyDown (KeyCode.O) && (OrbCounter > 0)) {
+		if (Input.GetKeyDown (OrbwechselRechts) && (OrbCounter > 0)) {
+			OrbCounter--;
+			if (OrbCounter == 0) {
+				OrbCounter = 4;
+			}
+		} else if (Input.GetKeyDown (OrbwechselLinks) && (OrbCounter > 0)) {
 			OrbCounter++;
-		}
+		} 
 
 //---------------------------- Orb-Controller ------------------------------
 

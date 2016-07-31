@@ -35,6 +35,10 @@ public class OrbBeineProjektil : MonoBehaviour {
 			Boss2 BossScript = col.gameObject.GetComponent<Boss2> ();
 			BossScript.BossLeben--;
 		} 
+		if (col.gameObject.tag == "Boss3") {
+			Boss3 BossScript = col.gameObject.GetComponent<Boss3> ();
+			BossScript.BossLeben--;
+		}
 
 	}
 
@@ -60,6 +64,10 @@ public class OrbBeineProjektil : MonoBehaviour {
 			Boss2 BossScript = col.gameObject.GetComponent<Boss2> ();
 			BossScript.BossLeben--;
 		} 
+		if (col.gameObject.tag == "Boss3") {
+			Boss3 BossScript = col.gameObject.GetComponent<Boss3> ();
+			BossScript.BossLeben--;
+		}
 	}
 
 	public void DestroyOnRange () {

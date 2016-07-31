@@ -36,10 +36,6 @@ public class PlayerController : MonoBehaviour {
 	public float walkVolume;
 	public AudioClip death;
 	public float deathVolume;
-	public AudioClip laser;
-	public float laserVolume;
-	public AudioClip wings;
-	public float wingsVolume;
 	public AudioClip claw;
 	public float clawVolume;
 	AudioSource audio;
@@ -66,10 +62,13 @@ public class PlayerController : MonoBehaviour {
 
 	public bool shootBeine = false;
 
-	public KeyCode ActionKey = KeyCode.P; //Taste für alle Attacken
+	public KeyCode ActionKey = KeyCode.O; //Taste für alle Attacken
 
 	public GameObject gameManager;
 
+
+	public Transform beinTriggerSpawn;
+	public GameObject beinTrigger;
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -246,18 +245,22 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown (ActionKey) && manager.alive) {
 
 			if (manager.OrbKopf == true) {
-				shootLaser = true;
-				audio.PlayOneShot(laser,laserVolume);
+				if (GetComponent<OrbKopf> ().laserShootable == true) {
+					shootLaser = true;
+				}
 			} else if (manager.OrbKrallen == true) {
 				anim.SetBool ("AttackKrallen", true);
 				audio.PlayOneShot(claw,clawVolume);
 			} else if (manager.OrbFlügel == true) {
-				anim.SetBool ("AttackWings", true);
-				shootWings = true;
-				audio.PlayOneShot(wings,wingsVolume);
-			} else if ((manager.OrbBeine == true) && (anim.GetBool("Ground") == false) && (anim.GetBool("Fall") == false) ){
+				if (GetComponent<OrbFlügel> ().projektilShootable == true) {
+					shootWings = true;
+					anim.SetBool ("AttackWings", true);
+				}
+			} else if ((manager.OrbBeine == true) && (anim.GetBool("Ground") == false) && (anim.GetBool("Fall") == false) && !shootBeine){
 				shootBeine = true;
-				anim.SetBool ("BeinAttacke", true);
+				//anim.SetBool ("BeinAttacke", true);
+				GameObject beinIndikator = (GameObject)Instantiate (beinTrigger, beinTriggerSpawn.position, beinTriggerSpawn.rotation);
+				beinIndikator.transform.parent = gameObject.transform;
 			}
 		}
 	

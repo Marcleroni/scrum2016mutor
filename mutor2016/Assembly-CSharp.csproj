@@ -48,12 +48,15 @@
      <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\AudioTriggerLevel1.cs" />
      <Compile Include="Assets\Scripts\AudioTriggerLevel2.cs" />
+     <Compile Include="Assets\Scripts\AudioTriggerLevel3.cs" />
      <Compile Include="Assets\Scripts\Boss1.cs" />
      <Compile Include="Assets\Scripts\Boss1Hit.cs" />
      <Compile Include="Assets\Scripts\Boss2.cs" />
      <Compile Include="Assets\Scripts\Boss2Projektil.cs" />
+     <Compile Include="Assets\Scripts\Boss3.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\DoorScript.cs" />
+     <Compile Include="Assets\Scripts\EndbossPortal.cs" />
      <Compile Include="Assets\Scripts\EnemyFlying.cs" />
      <Compile Include="Assets\Scripts\EnemySkelett.cs" />
      <Compile Include="Assets\Scripts\EnemySliding.cs" />
@@ -70,6 +73,7 @@
      <Compile Include="Assets\Scripts\OrbKopfItem.cs" />
      <Compile Include="Assets\Scripts\OrbKopfProjektil.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\PopupBeineNewBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\PortalLevel1.cs" />
      <Compile Include="Assets\Scripts\PortalLevel2.cs" />
      <Compile Include="Assets\Scripts\PortalLevel3.cs" />
@@ -80,6 +84,7 @@
      <Compile Include="Assets\Scripts\SpawnManagerFrom3.cs" />
      <Compile Include="Assets\Scripts\SpawnStart.cs" />
      <Compile Include="Assets\Scripts\Splitter.cs" />
+     <Compile Include="Assets\Scripts\SplitterPopup.cs" />
      <Compile Include="Assets\Scripts\UIBossLeben.cs" />
      <Compile Include="Assets\Scripts\UILeben.cs" />
      <Compile Include="Assets\Scripts\UIOrbs.cs" />

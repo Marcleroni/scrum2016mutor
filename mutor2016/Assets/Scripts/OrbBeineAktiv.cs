@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 using System.Collections;
 
 public class OrbBeineAktiv : MonoBehaviour {
@@ -7,6 +7,7 @@ public class OrbBeineAktiv : MonoBehaviour {
 	public Transform Spawn1;
 	public Transform Spawn2;
 	public GameObject prefab1;
+	public GameObject Indikator;
 
 	public AudioClip beine;
 	public float beineVolume;
@@ -33,6 +34,9 @@ public class OrbBeineAktiv : MonoBehaviour {
 
 
 	void Shoot () {
+
+		Indikator = GameObject.FindGameObjectWithTag ("BeinIndikator");
+		Destroy (Indikator);
 
 		audio.PlayOneShot(beine,beineVolume);
 		PlayerController pc = gameObject.GetComponent<PlayerController>();
